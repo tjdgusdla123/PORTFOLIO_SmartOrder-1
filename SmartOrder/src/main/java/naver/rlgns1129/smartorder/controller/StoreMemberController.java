@@ -15,9 +15,28 @@ public class StoreMemberController {
 	@Autowired
 	private StoreMemberService storeMemberService;
 	
-	@RequestMapping(value = {"/", "index.html"}, method = RequestMethod.GET)
-	public String home(HttpServletRequest request, HttpServletResponse response) {
-		storeMemberService.allStoreMember(request, response);
-		return "home";
+	@RequestMapping(value = "user/register", method = RequestMethod.GET)
+	public String register() {
+		
+		return "member/register";
 	}
+	
+	@RequestMapping(value = "user/login", method = RequestMethod.GET)
+	public String login() {
+		
+		return "member/login";
+	}
+	
+	@RequestMapping(value = "orderinfo", method = RequestMethod.GET)
+	public String orderinfo(HttpServletRequest request, HttpServletResponse response) {
+		storeMemberService.allStoreMember(request, response);
+		return "order/orderinfo";
+	}
+	
+//	@RequestMapping(value = {"/", "index.html" ,"user/main"}, method = RequestMethod.GET)
+//	public String home(HttpServletRequest request, HttpServletResponse response) {
+//		storeMemberService.allStoreMember(request, response);
+//		return "member/main";
+//	}
+	
 }
