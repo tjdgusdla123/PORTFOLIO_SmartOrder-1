@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import naver.rlgns1129.smartorder.domain.StoreMember;
+
 //설정 파일을 읽어오는 코드
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
@@ -37,4 +39,32 @@ public class StoreMemberTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void emailckeck1() {
+		//email 중복검사
+		System.out.println(sqlSession.selectOne("storemember.storememberemailcheck", "rlgns1129@naver.com"));
+		System.out.println(sqlSession.selectOne("storemember.storememberemailcheck", "rlgns0610@naver.com"));
+	}
+	
+	@Test
+	public void nicknamecheck1() {
+		//nickname 중복검사
+		System.out.println(sqlSession.selectOne("storemember.storemembernicknamecheck", "s12800"));
+		System.out.println(sqlSession.selectOne("storemember.storemembernicknamecheck", "배기훈짱"));
+	}
+	
+	@Test
+	public void registertest1() {
+		//데이터 삽입 확인
+		
+		StoreMember storeMember = new StoreMember();
+		storeMember.setMemberEmail("springinserttest1@naver.com");
+		storeMember.setMemberNickname("springinserttest1");
+		storeMember.setMemberPassword("123456");
+		storeMember.setMemberPhoneNumber("1234567890");
+		
+		System.out.println(sqlSession.insert("storemember.insertstoremember", storeMember));
+	}
+	
 }

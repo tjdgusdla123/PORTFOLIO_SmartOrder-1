@@ -1,5 +1,7 @@
 package naver.rlgns1129.smartorder.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,4 +11,5 @@ import javax.servlet.http.HttpServletResponse;
 public interface StoreMemberService {
 	//전체 데이터를 가져오는 메소드
 		public void allStoreMember(HttpServletRequest request, HttpServletResponse response);
+		public Map<String, Object> register(HttpServletRequest request, HttpServletResponse response);
 }

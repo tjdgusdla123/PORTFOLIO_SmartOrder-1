@@ -49,5 +49,5 @@
 		</div>
 	</div>
 </body>
-<script src="${pageContext.request.contextPath}/member/js/login.js"></script>
+<script src="${pageContext.request.contextPath}/memberjs/login.js"></script>
 </html>

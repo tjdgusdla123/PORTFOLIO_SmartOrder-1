@@ -19,4 +19,20 @@ public class StoreMemberDAO {
 		return sqlSession.selectList("storemember.allstoremember");
 		
 	}
+	
+	public int register(StoreMember storeMember){
+		return sqlSession.insert("storemember.insertstoremember", storeMember);
+	}
+	
+	//이메일 중복 체크 메소드
+	public String memberEmailCheck(String memberEmail) {
+		return sqlSession.selectOne("storemember.storememberemailcheck", memberEmail);
+	}
+	
+	//닉네임 중복 체크 메소드
+	public String memberNicknameCheck(String memberNickname) {
+		return sqlSession.selectOne("storemember.storemembernicknamecheck", memberNickname);
+	}
+	
+
 }

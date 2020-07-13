@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import naver.rlgns1129.smartorder.service.StoreMemberService;
 
 @Controller
-public class StoreMemberController {
+public class StoreMemberPageController {
 	@Autowired
 	private StoreMemberService storeMemberService;
 	
@@ -20,6 +20,13 @@ public class StoreMemberController {
 		
 		return "member/register";
 	}
+	
+//	@RequestMapping(value = "user/register", method = RequestMethod.POST)
+//	public String register1(HttpServletRequest request, HttpServletResponse response) {
+//		storeMemberService.register(request, response);
+//		return "member/main";
+//	}
+	
 	
 	@RequestMapping(value = "user/login", method = RequestMethod.GET)
 	public String login() {

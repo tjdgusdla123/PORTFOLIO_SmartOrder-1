@@ -1,93 +1,92 @@
 package naver.rlgns1129.smartorder.domain;
 
 public class StoreMenu {
-	private String menucode;
-	private String menuname;
-	private String menuinfo;
-	private Integer menuprice;
-	private String menuphoto;
-	private String menusection;
-	private String storenickname;
+	private String menuCode;
+	private String menuName;
+	private String menuInfo;
+	private Integer menuPrice;
+	private String menuPhoto;
+	private String menuSection;
+	private String storeNickname;
 
 	public StoreMenu() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public StoreMenu(String menucode, String menuname, String menuinfo, int menuprice, String menuphoto,
-			String menusection, String storenickname) {
+	public StoreMenu(String menuCode, String menuName, String menuInfo, Integer menuPrice, String menuPhoto,
+			String menuSection, String storeNickname) {
 		super();
-		this.menucode = menucode;
-		this.menuname = menuname;
-		this.menuinfo = menuinfo;
-		this.menuprice = menuprice;
-		this.menuphoto = menuphoto;
-		this.menusection = menusection;
-		this.storenickname = storenickname;
+		this.menuCode = menuCode;
+		this.menuName = menuName;
+		this.menuInfo = menuInfo;
+		this.menuPrice = menuPrice;
+		this.menuPhoto = menuPhoto;
+		this.menuSection = menuSection;
+		this.storeNickname = storeNickname;
 	}
 
-	public String getMenucode() {
-		return menucode;
+	public String getMenuCode() {
+		return menuCode;
 	}
 
-	public void setMenucode(String menucode) {
-		this.menucode = menucode;
+	public void setMenuCode(String menuCode) {
+		this.menuCode = menuCode;
 	}
 
-	public String getMenuname() {
-		return menuname;
+	public String getMenuName() {
+		return menuName;
 	}
 
-	public void setMenuname(String menuname) {
-		this.menuname = menuname;
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
 	}
 
-	public String getMenuinfo() {
-		return menuinfo;
+	public String getMenuInfo() {
+		return menuInfo;
 	}
 
-	public void setMenuinfo(String menuinfo) {
-		this.menuinfo = menuinfo;
+	public void setMenuInfo(String menuInfo) {
+		this.menuInfo = menuInfo;
 	}
 
-	public int getMenuprice() {
-		return menuprice;
+	public Integer getMenuPrice() {
+		return menuPrice;
 	}
 
-	public void setMenuprice(int menuprice) {
-		this.menuprice = menuprice;
+	public void setMenuPrice(Integer menuPrice) {
+		this.menuPrice = menuPrice;
 	}
 
-	public String getMenuphoto() {
-		return menuphoto;
+	public String getMenuPhoto() {
+		return menuPhoto;
 	}
 
-	public void setMenuphoto(String menuphoto) {
-		this.menuphoto = menuphoto;
+	public void setMenuPhoto(String menuPhoto) {
+		this.menuPhoto = menuPhoto;
 	}
 
-	public String getMenusection() {
-		return menusection;
+	public String getMenuSection() {
+		return menuSection;
 	}
 
-	public void setMenusection(String menusection) {
-		this.menusection = menusection;
+	public void setMenuSection(String menuSection) {
+		this.menuSection = menuSection;
 	}
 
-	public String getStorenickname() {
-		return storenickname;
+	public String getStoreNickname() {
+		return storeNickname;
 	}
 
-	public void setStorenickname(String storenickname) {
-		this.storenickname = storenickname;
+	public void setStoreNickname(String storeNickname) {
+		this.storeNickname = storeNickname;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreMenu [menucode=" + menucode + ", menuname=" + menuname + ", menuinfo=" + menuinfo + ", menuprice="
-				+ menuprice + ", menuphoto=" + menuphoto + ", menusection=" + menusection + ", storenickname="
-				+ storenickname + "]";
+		return "StoreMenu [menuCode=" + menuCode + ", menuName=" + menuName + ", menuInfo=" + menuInfo + ", menuPrice="
+				+ menuPrice + ", menuPhoto=" + menuPhoto + ", menuSection=" + menuSection + ", storeNickname="
+				+ storeNickname + "]";
 	}
 
-}
-
+}	

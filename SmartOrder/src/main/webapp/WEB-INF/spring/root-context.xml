@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- 모든 곳에서 사용할 Bean을 생성 -->
 
 	<!-- DataSource bean 생성 코드 -->
-	<bean
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		id="dataSource">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url"
-			value="jdbc:oracle:thin:@192.168.0.200:1521:xe" />
-		<property name="username" value="user09" />
-		<property name="password" value="user09" />
+	<!-- oracle bean -->
+	<!--  <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+		id="dataSource"> <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.200:1521:xe"/>
+		<property name="username" value="user09"/>
+		<property name="password" value="user09"/> 
+		</bean> -->
+	<!-- mysql bean -->
+ 	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/sample?useUnicode=yes&amp;characterEncoding=UTF-8
+			</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>12345678</value>
+		</property>
 	</bean>
+
 
 	<!-- XML을 이용한 MyBatis 사용 설정 -->
 	<!-- XML을 이용해서 MyBatis를 연동할 때 사용하는 Bean -->
@@ -30,7 +47,15 @@
 	</bean>
 
 	<!-- 위에서 id를 변경하지 않는 한 고정 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<!-- xml을 이용해서 MyBatis를 사용할 때 생성 -->
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>	
+	
+	<!-- 트랜잭션 사용을 위한 부분 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
