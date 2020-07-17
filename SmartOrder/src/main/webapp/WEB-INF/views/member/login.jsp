@@ -14,7 +14,7 @@
 	<div class="inner_login">
 		<div class="login_myweb">
 			<div id="msg" class="msg"></div>
-			<form method="post" id="loginform" action="">
+			<form method="post" id="loginform" >
 				<fieldset>
 					<legend class="screen_out">로그인 정보 입력폼</legend>
 					<div class="box_login">
@@ -28,7 +28,7 @@
 								placeholder="비밀번호를 입력하세요!">
 						</div>
 					</div>
-					<button type="submit" class="btn_login" id="loginbtn">로그인</button>
+					<button type="button" class="btn_login" id="loginbtn">로그인</button>
 					<div class="login_append">
 						<div class="inp_chk">
 							<input type="checkbox" id="keepLogin" class="inp_radio" name="keepLogin">
@@ -49,5 +49,5 @@
 		</div>
 	</div>
 </body>
-<script src="${pageContext.request.contextPath}/memberjs/login.js"></script>
+<script src="${pageContext.request.contextPath}/member/js/login.js"></script>
 </html>

@@ -19,7 +19,7 @@ public class StoreMemberDAO {
 		return sqlSession.selectList("storemember.allstoremember");
 		
 	}
-	
+	//회원 가입
 	public int register(StoreMember storeMember){
 		return sqlSession.insert("storemember.insertstoremember", storeMember);
 	}
@@ -34,5 +34,8 @@ public class StoreMemberDAO {
 		return sqlSession.selectOne("storemember.storemembernicknamecheck", memberNickname);
 	}
 	
+	public StoreMember login(String memberNickname) {
+		return sqlSession.selectOne("storemember.storememberlogin" , memberNickname);
+		}
 
 }

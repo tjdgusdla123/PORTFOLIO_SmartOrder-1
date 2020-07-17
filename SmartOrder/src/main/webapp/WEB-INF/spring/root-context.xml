@@ -9,14 +9,14 @@
 
 	<!-- DataSource bean 생성 코드 -->
 	<!-- oracle bean -->
-	<!--  <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+	 <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
 		id="dataSource"> <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.200:1521:xe"/>
-		<property name="username" value="user09"/>
-		<property name="password" value="user09"/> 
-		</bean> -->
+		<property name="url" value="jdbc:oracle:thin:@211.200.100.168:1521:orcl"/>
+		<property name="username" value="SMARTORDER"/>
+		<property name="password" value="12345678"/> 
+		</bean> 
 	<!-- mysql bean -->
- 	<bean id="dataSource"
+ 	<!-- <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
 			<value>com.mysql.jdbc.Driver</value>
@@ -31,7 +31,7 @@
 		<property name="password">
 			<value>12345678</value>
 		</property>
-	</bean>
+	</bean>  -->
 
 
 	<!-- XML을 이용한 MyBatis 사용 설정 -->

@@ -15,6 +15,14 @@ public class StoreMemberPageController {
 	@Autowired
 	private StoreMemberService storeMemberService;
 	
+	
+//	@RequestMapping(value = {"/", "index.html" ,"user/main"}, method = RequestMethod.GET)
+//	public String home(HttpServletRequest request, HttpServletResponse response) {
+//		storeMemberService.allStoreMember(request, response);
+//		return "member/main";
+//	}
+	
+	
 	@RequestMapping(value = "user/register", method = RequestMethod.GET)
 	public String register() {
 		
@@ -40,10 +48,6 @@ public class StoreMemberPageController {
 		return "order/orderinfo";
 	}
 	
-//	@RequestMapping(value = {"/", "index.html" ,"user/main"}, method = RequestMethod.GET)
-//	public String home(HttpServletRequest request, HttpServletResponse response) {
-//		storeMemberService.allStoreMember(request, response);
-//		return "member/main";
-//	}
+	
 	
 }
