@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import naver.rlgns1129.smartorder.domain.StoreMember;
+import naver.rlgns1129.smartorder.domain.StoreMenu;
 
 //설정 파일을 읽어오는 코드
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,13 +23,13 @@ public class StoreMemberTest {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// MyBatis 설정 정보를 테스트
+//	// MyBatis 설정 정보를 테스트
 //	@Test
 //	public void mybatisTest() {
 //		System.out.println(sqlSession);
 //	}
-
-	// 데이터베이스 연결을 테스트
+//
+//	// 데이터베이스 연결을 테스트
 //	@Test
 //	public void connectTest() {
 //
@@ -73,4 +74,14 @@ public class StoreMemberTest {
 //		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "안배기훈짱"));
 //		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "임성현짱"));
 //	}
+	
+	@Test
+	public void getmainmenutest() {
+		StoreMenu storeMenu = new StoreMenu();
+		storeMenu.setMenuSection("메인");
+		storeMenu.setStoreNickname("기훈식당닉네임");
+		
+		System.out.println(sqlSession.selectList("storemenu.getmainmenu", storeMenu));
+		
+	}
 }

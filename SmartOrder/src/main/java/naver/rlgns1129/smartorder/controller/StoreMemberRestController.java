@@ -31,6 +31,10 @@ public class StoreMemberRestController {
 		System.out.println("StoreMemberRestController.login 데이터 오는지 확인" );
 		//서비스의 메소드를 호출
 		Map<String, Object> result = storeMemberService.login(request, response);
+		System.out.println("StoreMemberRestController.login.result : " + result  );
+		
 		return result;
 		}
+	
+	
 }

@@ -14,4 +14,10 @@ public class HomeController {
 	public String home() {
 		return "member/main";
 	}
+	
+	@RequestMapping(value = "orderinfo", method = RequestMethod.GET)
+	public String orderinfo(HttpServletRequest request, HttpServletResponse response) {
+		//storeMemberService.allStoreMember(request, response);
+		return "order/orderinfo";
+	}
 }

@@ -10,8 +10,8 @@
 	resultType은 select 절의 내용을 전부 저장할 수 있는 자료형 -->
 	
 	<!-- 파라미터 없이 전체 데이터를 읽어오는 SQL : 전체보기 -->
-	<select id="getmainmenu" parameterType="java.lang.String" resultType="naver.rlgns1129.smartorder.domain.StoreMenu">
-		select menuname , menuinfo , menuprice , menuphoto from storemenutbl where menusection = #{menusection}
+	<select id="getmainmenu" parameterType="naver.rlgns1129.smartorder.domain.StoreMenu" resultType="naver.rlgns1129.smartorder.domain.StoreMenu">
+		select menuname , menuinfo , menuprice , menuphoto from storemenutbl where menusection = #{menuSection} and storenickname = #{storeNickname}
 	</select>
 	
 </mapper>

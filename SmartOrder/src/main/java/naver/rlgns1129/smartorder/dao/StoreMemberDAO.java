@@ -36,6 +36,15 @@ public class StoreMemberDAO {
 	
 	public StoreMember login(String memberNickname) {
 		return sqlSession.selectOne("storemember.storememberlogin" , memberNickname);
-		}
-
+	}
+	
+	public void updateStoreMember(StoreMember storeMember) {
+		 sqlSession.update("storemember.updatestoremember", storeMember);
+	}
+	
+	public void deleteStoreMember(String memberNickname) {
+		sqlSession.delete("storemember.deletestoremember", memberNickname);
+	}
+	
+	
 }

@@ -62,7 +62,7 @@
 	
 	<!-- login -->
 	<select id="storememberlogin" parameterType="java.lang.String" resultType="naver.rlgns1129.smartorder.domain.StoreMember">
-	select memberemail, membernickname, memberpassword, memberphonenumber from storemembertbl where membernickname = #{membernickname}
+	select memberemail, membernickname, memberpassword, memberphonenumber from storemembertbl where membernickname = #{memberNickname}
 	</select>
 </mapper>	
 	

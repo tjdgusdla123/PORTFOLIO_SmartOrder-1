@@ -15,8 +15,9 @@ public class StoreMenuDAO {
 	private SqlSession sqlSession;
 
 	// StoreMember 테이블의 전체 데이터를 가져오는 메소드
-	public List<StoreMenu> getMainMenu(String menuSection) {
-		return sqlSession.selectList("storemenu.getmainmenu", menuSection);
-
+	public List<StoreMenu> getMainMenu(StoreMenu storeMenu) {
+		System.out.println("StoreMenuDao 도착");
+		return sqlSession.selectList("storemenu.getmainmenu", storeMenu);
+			
 	}
 }
