@@ -21,14 +21,17 @@ public class StoreMenuRestController {
 	@Autowired
 	private StoreMenuService storeMenuService;
 	
-	@RequestMapping(value = {"order/mainmenu"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/orderinfo/mainmenu" , "/orderinfo/alcohol", "/orderinfo/drink"} , method = RequestMethod.GET)
 	public Map<String, Object> mainmenu(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Controller 도착");
 		storeMenuService.getMainMenu(request, response);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		List<StoreMenu> storeMenu = (List<StoreMenu>)request.getAttribute("list");
 		map.put("list", storeMenu);
-
-	
+		
+		
 		return map;
 	}
 	

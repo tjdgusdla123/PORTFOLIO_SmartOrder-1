@@ -75,13 +75,5 @@ public class StoreMemberTest {
 //		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "임성현짱"));
 //	}
 	
-	@Test
-	public void getmainmenutest() {
-		StoreMenu storeMenu = new StoreMenu();
-		storeMenu.setMenuSection("메인");
-		storeMenu.setStoreNickname("기훈식당닉네임");
-		
-		System.out.println(sqlSession.selectList("storemenu.getmainmenu", storeMenu));
-		
-	}
+	
 }

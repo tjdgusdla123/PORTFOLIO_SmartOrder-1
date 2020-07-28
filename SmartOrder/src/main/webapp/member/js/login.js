@@ -4,6 +4,7 @@ var membernickname = document.getElementById("membernickname");
 var memberpassword = document.getElementById("memberpassword");
 var msg = document.getElementById("msg");
 
+
 loginbtn.addEventListener("click", function(event){
 	var flag = false;
 	if (membernickname.value.trim().length < 1) {

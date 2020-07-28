@@ -42,6 +42,7 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		System.out.println("StoreMenuServiceImpl.getMainmenu.storeMenu : " + storeMenu);
 		
 		List<StoreMenu> list = storeMenuDao.getMainMenu(storeMenu);
+
 		System.out.println("StoreMenuServiceImpl.getMainmenu.list : " + list);
 
 		request.setAttribute("list", list);

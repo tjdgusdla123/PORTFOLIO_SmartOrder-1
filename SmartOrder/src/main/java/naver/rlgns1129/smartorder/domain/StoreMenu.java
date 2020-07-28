@@ -11,6 +11,5 @@ public class StoreMenu {
 	private String menuPhoto;
 	private String menuSection;
 	private String storeNickname;
-
 	
 }	

@@ -9,16 +9,17 @@
 <body>
 	
 	
-	<form action="menusection">
+	<form id = menuform>
 	<h3>기훈가게정보<h3><br/>
-	<input type = "button" name="menusection" id="menusection" value="메인메뉴"/>
-	<input type = "button" name="menusection" id="ajaxalcohol" value="주류"/>
-	<input type = "button" name="menusection" id="ajaxdrink" value="음료수"/>
+	<input type = "button" name="menusection" id="getmainmenu" value="메인메뉴"/>
+	<input type = "button" name="menusection" id="getalcohol" value="주류"/>
+	<input type = "button" name="menusection" id="getdrink" value="음료수"/>
 	</form>
 	<br/>
 	<br/>
-	<div>
+	<div id ="menudata">
 	정보
 	</div>
 </body>
+<script type="text/javascript"src="${pageContext.request.contextPath}/storemenu/js/getmainmenu.js"></script>
 </html>
