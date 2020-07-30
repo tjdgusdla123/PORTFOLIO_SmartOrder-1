@@ -9,17 +9,13 @@
 <body>
 	
 	
-	<form id = menuform>
-	<h3>기훈가게정보<h3><br/>
+	<h3>기훈가게정보</h3>
 	<input type = "button" name="menusection" id="getmainmenu" value="메인메뉴"/>
 	<input type = "button" name="menusection" id="getalcohol" value="주류"/>
 	<input type = "button" name="menusection" id="getdrink" value="음료수"/>
-	</form>
 	<br/>
 	<br/>
-	<div id ="menudata">
-	정보
-	</div>
+	<div id="menudata"></div>
 </body>
-<script type="text/javascript"src="${pageContext.request.contextPath}/storemenu/js/getmainmenu.js"></script>
+<script src="${pageContext.request.contextPath}/storemenu/js/getmenu.js"></script>
 </html>

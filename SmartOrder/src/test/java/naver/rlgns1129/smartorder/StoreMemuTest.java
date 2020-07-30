@@ -22,13 +22,23 @@ public class StoreMemuTest {
 	@Autowired
 	private SqlSession sqlSession;
 	
+//	@Test
+//	public void getmainmenutest() {
+//		StoreMenu storeMenu = new StoreMenu();
+//		storeMenu.setMenuSection("메인");
+//		storeMenu.setStoreNickname("기훈식당닉네임");
+//		
+//		System.out.println(sqlSession.selectList("storemenu.getmainmenu", storeMenu));
+//		
+//	}
+	
 	@Test
-	public void getmainmenutest() {
+	public void menucheck() {
 		StoreMenu storeMenu = new StoreMenu();
-		storeMenu.setMenuSection("메인");
+		storeMenu.setMenuName("바지락술찜");
 		storeMenu.setStoreNickname("기훈식당닉네임");
 		
-		System.out.println(sqlSession.selectList("storemenu.getmainmenu", storeMenu));
+		System.out.println(sqlSession.selectOne("storemenu.menucheck", storeMenu));
 		
 	}
 	

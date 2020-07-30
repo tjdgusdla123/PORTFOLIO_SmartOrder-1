@@ -71,12 +71,14 @@ var msg = document.getElementById("msg");
 				alert("회원가입이 성공하였습니다.");
 			 	location.href = "../";
 			 }else{
-			 	if(map.emailcheck == false){
-			 		emailmsg.innerHTML = "사용 불 가능한 이메일입니다.";
+			 	if(map.memberemailcheck == false){
+			 		alert("사용 불 가능한 이메일입니다.");
+			 		//emailmsg.innerHTML = "사용 불 가능한 이메일입니다.";
 			 	}
-			 	if(map.nicknamecheck == false){
-			 		nicknamemsg.innerHTML = "사용 불 가능한 닉네임입니다.";
+			 	if(map.membernicknamecheck == false){
+			 		alert("사용 불 가능한 닉네임입니다.");
+			 		//nicknamemsg.innerHTML = "사용 불 가능한 닉네임입니다.";
 			 	}
 			 }
-		  })
+		  });
 	});

@@ -23,6 +23,7 @@ public class StoreMemberRestController {
 		
 		//서비스의 메소드를 호출
 		Map<String, Object> map = storeMemberService.register(request, response);
+		System.out.println("StoreMemberRestController.join.map 파라미터 : " + map);
 		return map;
 		}
 	

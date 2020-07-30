@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import naver.rlgns1129.smartorder.dao.StoreMemberDAO;
 import naver.rlgns1129.smartorder.dao.StoreMenuDAO;
@@ -22,7 +24,7 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 	private StoreMenuDAO storeMenuDao;
 
 	@Override
-	public void getMainMenu(HttpServletRequest request, HttpServletResponse response) {
+	public void getMenu(HttpServletRequest request, HttpServletResponse response) {
 		
 //		// 결과를 저장할 객체를 생성
 //		Map<String, Object> map = new HashMap<String, Object>();
@@ -41,12 +43,53 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		storeMenu.setStoreNickname(storeNickname);
 		System.out.println("StoreMenuServiceImpl.getMainmenu.storeMenu : " + storeMenu);
 		
-		List<StoreMenu> list = storeMenuDao.getMainMenu(storeMenu);
+		List<StoreMenu> list = storeMenuDao.getMenu(storeMenu);
 
 		System.out.println("StoreMenuServiceImpl.getMainmenu.list : " + list);
 
 		request.setAttribute("list", list);
 				
+	}
+
+	@Override
+	public void insertMenu(MultipartHttpServletRequest request, MultipartHttpServletRequest response) {
+		String menuCode = request.getParameter("menucode");
+		String menuName = request.getParameter("menuname");
+		String menuInfo = request.getParameter("menuinfo");
+		String menuPrice = request.getParameter("menuprice");
+		String menuSection = request.getParameter("menusection");
+		String storeNickname = request.getParameter("storenickname");
+		MultipartFile menuPhoto = request.getFile("menuphoto");
+		
+	}
+
+	@Override
+	public void updateMenu(MultipartHttpServletRequest request, MultipartHttpServletRequest response) {
+		String menuName = request.getParameter("menuname");
+		String menuInfo = request.getParameter("menuinfo");
+		String menuPrice = request.getParameter("menuprice");
+		String menuSection = request.getParameter("menusection");
+		MultipartFile menuPhoto = request.getFile("menuphoto");
+		
+	}
+
+	@Override
+	public void deleteMenu(HttpServletRequest request, HttpServletResponse response) {
+		String menuName = request.getParameter("menuname");
+		String storeNickname = request.getParameter("storenickname");
+		
+		StoreMenu storeMenu = new StoreMenu();
+		storeMenu.setMenuName(menuName);
+		storeMenu.setStoreNickname(storeNickname);
+				
+		StoreMenu menuCheckMenuCode = storeMenuDao.menuCheck(storeMenu);
+		String menuCode = menuCheckMenuCode.getMenuCode();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", false);
+		
+		storeMenuDao.deleteMenu(menuCode);
+		
 	}
 
 	

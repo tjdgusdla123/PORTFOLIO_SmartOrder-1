@@ -24,10 +24,9 @@ public class StoreMenuRestController {
 	@RequestMapping(value = {"/orderinfo/mainmenu" , "/orderinfo/alcohol", "/orderinfo/drink"} , method = RequestMethod.GET)
 	public Map<String, Object> mainmenu(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("Controller 도착");
-		storeMenuService.getMainMenu(request, response);
+		storeMenuService.getMenu(request, response);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		List<StoreMenu> storeMenu = (List<StoreMenu>)request.getAttribute("list");
 		map.put("list", storeMenu);
 		

@@ -9,9 +9,9 @@
 	<!-- oracle bean -->
 	 <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
 		id="dataSource"> <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
-		<property name="url" value="jdbc:oracle:thin:@s12800.iptime.org:1521:xe"/>
-		<property name="username" value="system"/>
-		<property name="password" value="Rlgnscjswo12"/> 
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.76:1521:xe"/>
+		<property name="username" value="user07"/>
+		<property name="password" value="user07"/> 
 		</bean> 
 	<!-- mysql bean -->
  	<!-- <bean id="dataSource"
