@@ -14,10 +14,15 @@ public class HomeController {
 	public String home() {
 		return "member/main";
 	}
+	//레이어팝업 연습을 위해 만든 컨트롤러
+	@RequestMapping(value = "rayer", method = RequestMethod.GET)
+	public String test() {
+		return "practice/rayer";
+	}
 	
-	@RequestMapping(value = "orderinfo", method = RequestMethod.GET)
-	public String orderinfo(HttpServletRequest request, HttpServletResponse response) {
-		//storeMemberService.allStoreMember(request, response);
-		return "order/orderinfo";
+	//모달 jQuery 연습을 위해 만든 컨트롤러
+	@RequestMapping(value = "modal", method = RequestMethod.GET)
+	public String modal() {
+		return "practice/modal";
 	}
 }

@@ -16,7 +16,7 @@
 	
 	<!-- 두개의 파라미터로 데이터를 읽는 SQL : 전체보기 -->
 	<select id="getmenu" parameterType="naver.rlgns1129.smartorder.domain.StoreMenu" resultType="naver.rlgns1129.smartorder.domain.StoreMenu">
-		select menuname , menuinfo , menuprice from storemenutbl where menusection = #{menuSection} and storenickname = #{storeNickname}
+		select menucode, menuname , menuinfo , menuprice , menuphoto from storemenutbl where menusection = #{menuSection} and storenickname = #{storeNickname}
 	</select>
 	
 	<!-- 한 가게에서 동일한 메뉴명이 있는지 메뉴 삽입 전 중복검사 -->

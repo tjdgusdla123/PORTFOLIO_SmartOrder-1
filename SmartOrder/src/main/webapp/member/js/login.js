@@ -8,13 +8,13 @@ var msg = document.getElementById("msg");
 loginbtn.addEventListener("click", function(event){
 	var flag = false;
 	if (membernickname.value.trim().length < 1) {
-			msg.innerHTML += '닉네임은 필수 입력입니다.<br/>';
+			msg.innerHTML = '닉네임은 필수 입력입니다.<br/>';
 			msg.style.color = "red";
 			flag = true;
 		}
 	
 	if (memberpassword.value.trim().length < 1) {
-			pwmsg.innerHTML += '비밀번호는 필수 입력입니다.<br/>';
+			pwmsg.innerHTML = '비밀번호는 필수 입력입니다.<br/>';
 			msg.style.color = "red";
 			flag = true;
 		}
