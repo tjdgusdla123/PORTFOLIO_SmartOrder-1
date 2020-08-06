@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface StoreMenuService {
 	public void getMenu(HttpServletRequest request, HttpServletResponse response);
+	public void	detailMenu(HttpServletRequest request, HttpServletResponse response);
 	public void insertMenu(MultipartHttpServletRequest request, MultipartHttpServletRequest response);
 	public void updateMenu(MultipartHttpServletRequest request, MultipartHttpServletRequest response);
 	public void deleteMenu(HttpServletRequest request, HttpServletResponse response);

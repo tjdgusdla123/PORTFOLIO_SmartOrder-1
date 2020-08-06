@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 정보</title>
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 </head>
 <body>
 	<h3>기훈가게정보</h3>
@@ -17,8 +21,14 @@
 	
 	<div id="menudata"></div>
 	
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/storemenu/js/getmenu.js"></script>
+	
+	<div id="menudiv" title="메뉴 상세정보"></div>
+ 
+	<!-- <button id="opener">Open Dialog</button> -->
+ 
+ 	
+ 	
 
+</body>
+<script src="${pageContext.request.contextPath}/storemenu/js/getmenu.js"></script>
 </html>

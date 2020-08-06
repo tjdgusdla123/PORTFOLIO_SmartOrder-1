@@ -23,6 +23,11 @@ public class StoreMenuDAO {
 	public List<StoreMenu> getMenu(StoreMenu storeMenu) {
 		return sqlSession.selectList("storemenu.getmenu", storeMenu);
 	}
+	
+	// StoreMemu 테이블의 메뉴코드로 상세정보를 가져오는 메소드
+	public StoreMenu detailMenu(String menuCode) {
+		return sqlSession.selectOne("storemenu.detailmenu", menuCode);
+		}
 
 	//  한 가게에서 동일한 메뉴명이 있는지 메뉴 삽입 전 중복검사 
 	//  그리고 메뉴를 수정 삭제할때 기본키를 가져올 SQL 

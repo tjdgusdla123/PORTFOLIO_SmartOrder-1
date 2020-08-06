@@ -68,12 +68,12 @@ public class StoreMemberTest {
 //		System.out.println(sqlSession.insert("storemember.insertstoremember", storeMember));
 //	}
 	
-//	@Test
-//	public void logintest() {
-//		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "배기훈짱"));
-//		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "안배기훈짱"));
-//		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "임성현짱"));
-//	}
+	@Test
+	public void logintest() {
+		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "배기훈짱"));
+		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "안배기훈짱"));
+		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "임성현짱"));
+	}
 	
 	
 }

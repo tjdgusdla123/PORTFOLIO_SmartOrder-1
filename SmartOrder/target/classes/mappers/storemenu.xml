@@ -19,6 +19,12 @@
 		select menucode, menuname , menuinfo , menuprice , menuphoto from storemenutbl where menusection = #{menuSection} and storenickname = #{storeNickname}
 	</select>
 	
+	<!-- 한개의 파라미터로 데이터 상세보기 -->
+	<select id="detailmenu" parameterType="java.lang.String" resultType="naver.rlgns1129.smartorder.domain.StoreMenu">
+		select menucode, menuname , menuinfo , menuprice , menuphoto from storemenutbl where menucode = #{menuCode}
+	</select>
+	
+	
 	<!-- 한 가게에서 동일한 메뉴명이 있는지 메뉴 삽입 전 중복검사 -->
 	<!-- 그리고 메뉴를 수정 삭제할때 기본키를 가져올 SQL -->
 	<!-- 이 SQL 하나로 Insert의 한가게에 동일한 메뉴명이 있는지 중복검사가 가능하다 -->

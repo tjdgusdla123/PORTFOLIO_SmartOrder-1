@@ -34,6 +34,15 @@ public class StoreMenuRestController {
 		return map;
 	}
 	
+	@RequestMapping(value = "/orderinfo/detail" , method = RequestMethod.GET)
+	public Map<String, Object> detailmenu(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreMenuRestController.detailmenu 도착");
+		storeMenuService.detailMenu(request, response);
+		StoreMenu storeMenu = (StoreMenu)request.getAttribute("storemenu");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("storemenu", storeMenu);
+		return map;
+	}
 	
 	
 }

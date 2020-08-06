@@ -32,14 +32,21 @@ public class StoreMemuTest {
 //		
 //	}
 	
-	@Test
-	public void menucheck() {
-		StoreMenu storeMenu = new StoreMenu();
-		storeMenu.setMenuName("바지락술찜");
-		storeMenu.setStoreNickname("기훈식당닉네임");
-		
-		System.out.println(sqlSession.selectOne("storemenu.menucheck", storeMenu));
-		
-	}
+//	@Test
+//	public void menucheck() {
+//		StoreMenu storeMenu = new StoreMenu();
+//		storeMenu.setMenuName("바지락술찜");
+//		storeMenu.setStoreNickname("기훈식당닉네임");
+//		
+//		System.out.println(sqlSession.selectOne("storemenu.menucheck", storeMenu));
+//		
+//	}
+	
+	//메뉴 상세보기 테스
+//	@Test
+//	public void detailMenu() {
+//		String menuCode = "m1";
+//	System.out.println(sqlSession.selectOne("storemenu.detailmenu", menuCode));
+//	}
 	
 }

@@ -46,7 +46,7 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		List<StoreMenu> list = storeMenuDao.getMenu(storeMenu);
 
 		System.out.println("StoreMenuServiceImpl.getMainmenu.list : " + list);
-
+		
 		request.setAttribute("list", list);
 				
 	}
@@ -90,6 +90,27 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		
 		storeMenuDao.deleteMenu(menuCode);
 		
+	}
+
+	@Override
+	public void detailMenu(HttpServletRequest request, HttpServletResponse response) {
+		//요청 주소의 마지막 부분을 가져오기
+//		//localhost/detail/menucode
+//		System.out.println("StoreMenuServiceImpl.detailMenu 요청 도달");
+//		String requestURI = request.getRequestURI();
+//		System.out.println("StoreMenuServiceImpl.detailMenu.requestURI : " + requestURI);
+//		String [] ar = requestURI.split("/");
+//		System.out.println("StoreMenuServiceImpl.detailMenu.ar : " + ar);
+//		String menuCode = ar[ar.length-1];
+//		System.out.println("StoreMenuServiceImpl.detailMenu.menuCode : " + menuCode);
+//		StoreMenu storeMenu = storeMenuDao.detailMenu(menuCode);
+//		System.out.println("StoreMenuServiceImpl.detailMenu.storeMenu : " + storeMenu);
+		
+		String menuCode = request.getParameter("menucode");
+		System.out.println("StoreMenuServiceImpl.detailMenu.menuCode 파라미터 : " + menuCode);
+		StoreMenu storeMenu = storeMenuDao.detailMenu(menuCode);
+		
+		request.setAttribute("storemenu", storeMenu);
 	}
 
 	
