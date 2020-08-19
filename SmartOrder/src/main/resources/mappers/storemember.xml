@@ -37,12 +37,14 @@
 	<!-- 데이터를 수정하는 SQL -->
 	<!-- 기본키(code)를 가지고 데이터를 가져와서 나머지 컬럼의 값을 수정 -->
 	<update id="updatestoremember" parameterType="naver.rlgns1129.smartorder.domain.StoreMember">
-		update storemembertbl set membernickname = #{memberNickname}, memberphonenumber = #{memberPhoneNumber} where memberemail = #{memberEmail}
+		update storemembertbl
+		set membernickname = #{memberNickname} , memberphonenumber = #{memberPhoneNumber} ,memberpassword = #{memberPassword}
+		where memberemail = #{memberEmail}
 	</update>
 	
 	<!-- 데이터를 삭제하는 SQL -->
 	<delete id="deletestoremember" parameterType="java.lang.String">
-		delete from storemembertbl where memberemail = #{memberEmail}
+		delete from storemembertbl where membernickname = #{memberNickname}
 	</delete>
 	
 	<!-- emailcheck 중복검사 -->

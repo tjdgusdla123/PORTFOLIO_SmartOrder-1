@@ -34,16 +34,19 @@ public class StoreMemberDAO {
 		return sqlSession.selectOne("storemember.storemembernicknamecheck", memberNickname);
 	}
 	
+	//로그인
 	public StoreMember login(String memberNickname) {
 		return sqlSession.selectOne("storemember.storememberlogin" , memberNickname);
 	}
 	
-	public void updateStoreMember(StoreMember storeMember) {
-		 sqlSession.update("storemember.updatestoremember", storeMember);
+	//회원수정
+	public int update(StoreMember storeMember) {
+		return sqlSession.update("storemember.updatestoremember", storeMember);
 	}
 	
-	public void deleteStoreMember(String memberNickname) {
-		sqlSession.delete("storemember.deletestoremember", memberNickname);
+	//회원삭제
+	public int secession(String memberNickname) {
+		return sqlSession.delete("storemember.deletestoremember", memberNickname);
 	}
 	
 	

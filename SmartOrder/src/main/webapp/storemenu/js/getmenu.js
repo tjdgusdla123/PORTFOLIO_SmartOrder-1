@@ -49,6 +49,7 @@ var dialog = document.getElementById("dialog");
     	
 			msg += "</table>"
 			
+			msg += "<br/><br/>"
 			menudata.innerHTML = msg;
 
 	
@@ -107,11 +108,10 @@ var dialog = document.getElementById("dialog");
       $( "#menudiv" ).dialog( "open" );
    
 
-
-
   //제이쿼리끝.
 	}
 
+//getmainmenu 버튼을 눌렀을때 성현식당에 있는 메인메뉴섹션 불러오기
 getmainmenu.addEventListener("click", function(event){
 	getmenu("mainmenu" , "메인" , "성현식당닉네임");
 });

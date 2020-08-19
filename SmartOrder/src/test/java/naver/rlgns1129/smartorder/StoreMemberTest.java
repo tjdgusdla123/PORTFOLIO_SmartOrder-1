@@ -68,12 +68,24 @@ public class StoreMemberTest {
 //		System.out.println(sqlSession.insert("storemember.insertstoremember", storeMember));
 //	}
 	
-	@Test
-	public void logintest() {
-		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "배기훈짱"));
-		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "안배기훈짱"));
-		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "임성현짱"));
-	}
+//	@Test
+//	public void logintest() {
+//		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "배기훈짱"));
+//		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "안배기훈짱"));
+//		System.out.println(sqlSession.selectOne("storemember.storememberlogin", "임성현짱"));
+//	}
 	
+	@Test
+	//데이터 수정 확인
+	public void updatemember() {
+		
+		StoreMember storeMember = new StoreMember();
+		storeMember.setMemberEmail("rlgns1129@naver.com");
+		storeMember.setMemberNickname("rlgns0610");
+		storeMember.setMemberPassword("test1");
+		storeMember.setMemberPhoneNumber("01020065555");
+		
+		System.out.println(sqlSession.update("storemember.updatestoremember", storeMember));
+	}
 	
 }
