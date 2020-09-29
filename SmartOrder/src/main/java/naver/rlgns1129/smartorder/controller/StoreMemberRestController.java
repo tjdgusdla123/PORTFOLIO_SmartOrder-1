@@ -83,6 +83,7 @@ public class StoreMemberRestController {
 		}else {
 			System.out.println("else 구문 진입");
 			//attr.addFlashAttribute("result", false);
+			//테스트중
 			return "redirect:/user/secession";
 		}
 		
