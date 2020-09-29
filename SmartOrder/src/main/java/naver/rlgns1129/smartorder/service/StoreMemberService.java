@@ -15,7 +15,7 @@ public interface StoreMemberService {
 		public Map<String, Object> register(HttpServletRequest request, HttpServletResponse response);
 		public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response);
 		public Map<String, Object> update(HttpServletRequest request , HttpServletResponse response);
-		public int secession(HttpServletRequest request , HttpServletResponse response);
+		public Map<String, Object> secession(HttpServletRequest request , HttpServletResponse response);
 		public void logout(HttpSession session);
 		public String address(String loc);
 }

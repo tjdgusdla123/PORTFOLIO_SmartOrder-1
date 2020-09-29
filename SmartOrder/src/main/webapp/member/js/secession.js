@@ -21,12 +21,24 @@ pwcheckbtn.addEventListener("click", function(event){
 	request.open("post", url, true);
 	var formdata = new FormData(pwcheckform);
 	request.send(formdata);
+	console.log("load 진입 전")
+
 	request.addEventListener('load', function(e){
-	var map = JSON.parse(e.target.responseText);
-	if(map.result == true){
+		console.log("load 진입")
+		
+	var rText = e.target.responseText
+	console.log(rText)
+	
+
+	//var map = JSON.parse(e.target.responseText);
+	
+	if(rText == 'redirect:/user/main'){
+	console.log('rText 진입')
+	
 	alert('회원탈퇴에 성공했습니다')
-	location.href = "../user/updateform";
+	location.href = "../user/main";
 	}else{
+	console.log('rText else 구문 진입')
 	alert('회원탈퇴에 실패했습니다.')
 	msg.innerHTML = "잘못된  비밀번호입니다.";
 }

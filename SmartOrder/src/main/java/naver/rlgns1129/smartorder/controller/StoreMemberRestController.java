@@ -5,18 +5,15 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import naver.rlgns1129.smartorder.dao.StoreMemberDAO;
-import naver.rlgns1129.smartorder.domain.StoreMember;
+
 import naver.rlgns1129.smartorder.service.StoreMemberService;
 
 @RestController
@@ -48,7 +45,7 @@ public class StoreMemberRestController {
 	public Map<String, Object> address(@RequestParam("loc")String loc){
 		Map<String, Object>map = new HashMap<String, Object>();
 		map.put("address", storeMemberService.address(loc));
-		System.out.println(map);
+		//System.out.println(map);
 		return map;
 	}
 	
@@ -76,17 +73,22 @@ public class StoreMemberRestController {
 
 	@RequestMapping(value = "user/secession", method = RequestMethod.POST)
 	public String secession(HttpServletRequest request, HttpServletResponse response , RedirectAttributes attr) {
-		int r = storeMemberService.secession(request,response);
-		if(r >= 0) {
+		
+		Map<String, Object> resultMap = storeMemberService.secession(request,response);
+		if((Boolean)resultMap.get("result")==true) {
 			request.getSession().removeAttribute("storememberinfo");
-			attr.addFlashAttribute("secession", "success");
-			return "redirect:/";
+			System.out.println("if 구문 진입");
+			//attr.addFlashAttribute("result", true);
+			return "redirect:/user/main";
 		}else {
-			attr.addFlashAttribute("msg", "비밀번호가 잘못되었습니다.");
-			return "redirect:secession";
-
+			System.out.println("else 구문 진입");
+			//attr.addFlashAttribute("result", false);
+			return "redirect:/user/secession";
 		}
+		
 	}
+	
+	
 
 
 }

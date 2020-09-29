@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,16 +40,14 @@
 	<div id="dialog-update" title="회원탈퇴" style="display: none">
 		 
 		<p>
-			  <span class="ui-icon ui-icon-alert"
-				  style="float: left; margin: 12px 12px 20px 0;"></span>회원 탈퇴에
+			  <span class="ui-icon ui-icon-alert" style="float: left; margin: 12px 12px 20px 0;"></span>회원 탈퇴에
 			성공하셨습니다.  
 		</p>
 	</div>
 </body>
 <script src="${pageContext.request.contextPath}/member/js/secession.js"></script>
 <c:if test="${secession != null }">
-  <link rel="stylesheet"
-		  href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <script>

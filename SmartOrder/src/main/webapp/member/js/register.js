@@ -69,7 +69,8 @@ var msg = document.getElementById("msg");
 		  var map = JSON.parse(e.target.responseText);
 			 if(map.result == true){
 				alert("회원가입이 성공하였습니다.");
-			 	location.href = "../";
+			 	location.href = "/user/login";
+			 	
 			 }else{
 			 	if(map.memberemailcheck == false){
 			 		alert("사용 불 가능한 이메일입니다.");

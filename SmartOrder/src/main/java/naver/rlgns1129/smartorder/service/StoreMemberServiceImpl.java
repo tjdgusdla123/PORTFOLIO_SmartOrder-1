@@ -249,8 +249,10 @@ public class StoreMemberServiceImpl implements StoreMemberService {
 	}
 
 	@Override
-	public int secession(HttpServletRequest request, HttpServletResponse response) {
-		int result = -1;
+	public Map<String, Object> secession(HttpServletRequest request, HttpServletResponse response) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", false);
+
 		Map<String, Object> storeMemberInfo = (Map<String, Object>)request.getSession().getAttribute("storememberinfo");
 		System.out.println("StoreMemberServiceImpl.login.storeMemberNickname.else 구문 storeMemberInfo : " + storeMemberInfo);
 		String memberNickname = (String)storeMemberInfo.get("storemembernickname");
@@ -269,15 +271,15 @@ public class StoreMemberServiceImpl implements StoreMemberService {
 		
 		try {
 				if(storeMember.getMemberNickname().equals(memberNickname) && BCrypt.checkpw(memberPassword, storeMember.getMemberPassword())) {
-				result = storeMemberDao.secession(memberNickname);
-				
+				storeMemberDao.secession(memberNickname);
+				resultMap.put("result", true);
 			}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}		
 		
-		return result;
+		return resultMap;
 	}
 
 }

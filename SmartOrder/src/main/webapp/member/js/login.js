@@ -32,7 +32,7 @@ loginbtn.addEventListener("click", function(event){
 	var map = JSON.parse(e.target.responseText);
 	if(map.result == true){
 	alert('로그인에 성공했습니다')
-	location.href = "../";
+	location.href = "/orderinfo";
 	}else{
 	alert('로그인에 실패했습니다.')
 	msg.innerHTML = "잘못된 닉네임이거나 비밀번호가 틀렸습니다.";
