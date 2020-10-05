@@ -2,7 +2,7 @@
 
 프로젝트명 : Smart Order  
 
-수행인원 : 1명  
+수행 : 배기훈
 
 프로젝트 소개 :  
             메뉴의 변화가 자주 있을 수 있는 식당에서 메뉴판을 가져다 주지 않아도  
@@ -13,7 +13,7 @@
             Kakao API 를 이용하여 위치정보를 받아올 수 있게 구현했습니다.  
               
 개발환경 :  Operating System: Windows 10, Mac OS X  
-          Database: Oracle  
+          Database: MySQL  
           Web Application Server: Apache Tomcat 9.0  
           Programming Language: JAVA 1.8  
           IDE: STS 3  
