@@ -6,7 +6,7 @@ setInterval(function() {
 			data:{"loc":loc},
 			dataType:"json",
 			success:function(data){
-				document.getElementById('addr').innerHTML= "현재위치:" + data.address			}
+				document.getElementById('addr').innerHTML= "현재위치 : " + data.address			}
 		});
 	});
 }, 10000)

@@ -25,8 +25,8 @@ var dialog = document.getElementById("dialog");
 		var list = JSON.parse(map);
 		//console.log("getmenu.list : " + list);
 
-		var msg = "<h2>"+'상품 목록'+"</h2>"+
-				  "<table border='1'>"+
+		var msg = "<div class='container'>"+
+				  "<table class='table table-bordered table-striped table-hover table-responsive' border='1'>"+
 				  "<tr>"+
 				  "<th width='80'>"+'메뉴명'+"</th>"+
 				  "<th width='300'>"+'설명'+"</th>"+
@@ -37,7 +37,7 @@ var dialog = document.getElementById("dialog");
     		var imsi = list.list[i];
     	
     		msg +=  "<tr>" + 
-    				"<td  width='80'>"+ "<input type='button' id = 'menubtn'" +
+    				"<td  width='80'>"+ "<input type='button' data-toggle='modal' data-target='#menuModal' id = 'menubtn'" +
     				"onclick='getmenucode(" + '"'+ imsi.menuCode + '"' + ")'"+  "value= '"+ imsi.menuName+ "'/>"+"</td>"+
     				"<td  width='300'>"+imsi.menuInfo+"</td>"+
     				"<td  width='100' align='right'>"+
@@ -87,28 +87,10 @@ var dialog = document.getElementById("dialog");
 		menudiv.innerHTML = msg;
 			
 		}
+		//부트 스트랩 적용 전 제이쿼리를 이용하여 모달창 띄울때 위치
 		//제이쿼리 시작
   
-    $( "#menudiv" ).dialog({
-	     autoOpen: false,	
-      resizable: false,
-      height: "auto",
-      width: 400,
-      modal: true,
-      buttons: {
-        "메뉴 추가": function() {
-          $( this ).dialog( "close" );
-        },
-        "뒤로가기": function() {
-          $( this ).dialog( "close" );
-        }
-      }
-    });
-    
-      $( "#menudiv" ).dialog( "open" );
-   
-
-  //제이쿼리끝.
+  		//제이쿼리끝.
 	}
 
 //getmainmenu 버튼을 눌렀을때 성현식당에 있는 메인메뉴섹션 불러오기
