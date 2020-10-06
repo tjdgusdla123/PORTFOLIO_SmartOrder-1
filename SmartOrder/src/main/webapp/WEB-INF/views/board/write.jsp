@@ -102,7 +102,7 @@
         <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
         <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
         <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-        <form method="post" id="boardWriteForm">
+        <form method="post" id="boardWriteForm" enctype="multipart/form-data">
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>제목</label>
@@ -114,6 +114,13 @@
             <div class="form-group floating-label-form-group controls">
               <label>내용</label>
               <textarea rows="10" class="form-control" placeholder="글을 작성해 주세요." id="boardContent" name="boardContent" required data-validation-required-message="내용을 작성해주세요."></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>이미지</label>
+              <input type="file" class="form-control"  id="boardFile" name="boardFile" accept="image/*">
               <p class="help-block text-danger"></p>
             </div>
           </div>

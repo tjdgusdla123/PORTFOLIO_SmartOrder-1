@@ -72,13 +72,17 @@ window.addEventListener("load", function () {
 		
 		
 		//이것이 정답!!!!
-		console.log(list);
+		//console.log(list);
 		 	
-		var msg =	  "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
-					+ "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
-					
 		
-		console.log(msg)
+		if(list['storeMemberBoardDetail'].boardFile != null){
+			var msg =	  "<div style='text-align:center'>"+ "<img src='../../board/img/" + list['storeMemberBoardDetail'].boardFile + "' width='350' height='250' class='img-responsive center-block' />" + '<br/>' + '<br/>' + "</div>" + '<br/>'
+					+ "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
+					+ "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'	
+		}else{
+			var msg = "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
+					+ "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
+		}
 		
 		boardDetail.innerHTML = msg;
 		

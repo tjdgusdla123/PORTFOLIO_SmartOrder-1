@@ -16,13 +16,13 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="write" parameterType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
-	insert into storeMemberBoardTBL(boardTitle, boardContent, boardIp, memberNickname)
-	values(#{boardTitle}, #{boardContent}, #{boardIp}, #{memberNickname})
+	insert into storeMemberBoardTBL(boardTitle, boardContent, boardIp, memberNickname , boardFile)
+	values(#{boardTitle}, #{boardContent}, #{boardIp}, #{memberNickname}, #{boardFile})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
 	<select id="detail" parameterType="java.lang.Integer" resultType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
-		select boardTitle, boardContent , boardRegdate 
+		select boardTitle, boardContent , boardRegdate ,boardFile
 		from storeMemberBoardTBL 
 		where boardNo = #{boardNo}
 	</select>
