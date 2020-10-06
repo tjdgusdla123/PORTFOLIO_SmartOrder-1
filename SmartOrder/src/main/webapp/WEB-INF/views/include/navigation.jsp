@@ -13,16 +13,18 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/">Home</a>
+				<li class="nav-item"><a class="nav-link" href="/">홈</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="kihooninfomation">About</a>
+				<li class="nav-item"><a class="nav-link" href="kihooninfomation">스마트오더</a>
 				</li>
+				<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
+					</li>	
 				<c:if test="${storememberinfo.result == null}">
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/user/login">Login</a></li>
+						href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/user/register">Sign
-							Up</a></li>
+						href="${pageContext.request.contextPath}/user/register">회원가입</a></li>
+					
 				</c:if>
 				<c:if test="${storememberinfo.result == true}">
 
@@ -34,8 +36,7 @@
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						href="/shop/orderList">주문내역</a></li>
-					<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
-					</li>
+					
 					<li class="nav-item"><a class="nav-link" href="/user/update">회원정보수정</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/user/secession">회원탈퇴</a>

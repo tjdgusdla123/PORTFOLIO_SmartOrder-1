@@ -16,15 +16,15 @@ public class StoreMemberBoardDAO {
 	private SqlSession sqlSession;
 	
 	//게시글 작성
-	public int memberBoard(StoreMemberBoard storeMemberBoard) {
-		System.out.println("StoreMemberBoardDAO-storeMemberBoard:"+storeMemberBoard);
-		return sqlSession.insert("storememberboard.memberboardwrite",storeMemberBoard);
+	public int storeMemberBoardWrite(StoreMemberBoard storeMemberBoard) {
+		System.out.println("StoreMemberBoardDAO.storeMemberBoardWrite 도착 " + storeMemberBoard);
+		return sqlSession.insert("storeMemberBoard.write",storeMemberBoard);
 	}
 	
    //게시글 목록 
-	public List<StoreMemberBoard>memberBoardList(){
-		System.out.println("dao 전체데이터 가져오기 "+sqlSession);
-		return sqlSession.selectList("storememberboard.memberboardlist");
+	public List<StoreMemberBoard>storeMemberBoardList(){
+		System.out.println("StoreMemberBoardDAO.storeMemberBoardWrite 도착 ");
+		return sqlSession.selectList("storeMemberBoard.list");
 		
 		
 	}

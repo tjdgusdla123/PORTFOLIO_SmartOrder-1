@@ -21,16 +21,30 @@ public class StoreMemberBoardPageController {
 	private StoreMemberBoardService storeMemberBoardService;
 	//게시판 메인 
 	@RequestMapping(value ="board/list", method = RequestMethod.GET)
-	public String board() {
-		System.out.println("페이지controller도착-게시판"); 
+	public String board(Model model) {
+		System.out.println("StoreMemberBoardPageController.board controller 도착"); 
+		model.addAttribute("time", new java.util.Date());
 		return "board/main";
 }
 	//게시글 작성
-	@RequestMapping(value ="boardwrite", method = RequestMethod.GET)
+	@RequestMapping(value ="board/write", method = RequestMethod.GET)
 	public String boardwrite() {
-		System.out.println("페이지controller도착-글쓰기"); 
-		return "user/boardwrite";
+		System.out.println("StoreMemberBoardPageController.boardwrite controller 도착");
+		return "board/write";
 }	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 //	@RequestMapping(value ="boardlist", method = RequestMethod.GET)
 //   public String memberBoardList(HttpServletRequest request, HttpServletResponse response) {
@@ -40,14 +54,14 @@ public class StoreMemberBoardPageController {
 //	
 //		
 //}
-	@RequestMapping(value ="boardlist", method = RequestMethod.GET)
-	   public String memberBoardList(Model model) {
-			System.out.println("페이지controller도착-list");
-			List<StoreMemberBoard> list = storeMemberBoardService.memberBoardList();
-			model.addAttribute("list",list);
-		return "user/boardlist";	
-			
-	}	
+//	@RequestMapping(value ="boardlist", method = RequestMethod.GET)
+//	   public String memberBoardList(Model model) {
+//			System.out.println("페이지controller도착-list");
+//			List<StoreMemberBoard> list = storeMemberBoardService.storeMemberBoardList();
+//			model.addAttribute("list",list);
+//		return "user/boardlist";	
+//			
+//	}	
 //	//게시판 상세보기 
 //	@RequestMapping(value ="boarddetail/{boardBno}", method = RequestMethod.GET)
 //	public String memberBoardDetail(@PathVariable("boardBno") int boardBno,Model model) {

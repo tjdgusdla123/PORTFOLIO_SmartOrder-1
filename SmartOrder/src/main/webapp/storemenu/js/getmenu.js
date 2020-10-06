@@ -81,8 +81,17 @@ var dialog = document.getElementById("dialog");
 		//이것이 정답!!!!
 		console.log(list['storemenu'].menuPhoto);
 		
-		var msg = list['storemenu'].menuPhoto;
+		//var msg = list['storemenu'].menuPhoto;
 		
+		//var msg = "<img src='../../storemenu/img/" + list['storemenu'].menuPhoto + "' width='450' height='250' />" + '<br/>' + '<br/>'
+		//var msg = "<img src='../../storemenu/img/" + list['storemenu'].menuPhoto + "' width='350' height='250' class='img-responsive center-block' />" + '<br/>' + '<br/>'
+		
+		var msg = "<div id='menuimage' style='text-align:center'>"+ "<img src='../../storemenu/img/" + list['storemenu'].menuPhoto + "' width='350' height='250' class='img-responsive center-block' />" + '<br/>' + '<br/>' + "</div>" + '<br/>'
+					
+					+ "<div id='menuName' style='text-align:center'>"+ list['storemenu'].menuName + "</div>" + '<br/>'
+					+ "<div id='menuName' style='text-align:center'>"+ list['storemenu'].menuInfo + "</div>" + '<br/>'
+					+ "<div id='menuName' style='text-align:center'>"+'가격 : '+list['storemenu'].menuPrice + "</div>" + '<br/>'
+					
 		
 		menudiv.innerHTML = msg;
 			

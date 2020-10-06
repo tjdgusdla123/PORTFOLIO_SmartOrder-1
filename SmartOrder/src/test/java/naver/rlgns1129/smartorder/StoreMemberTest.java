@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import naver.rlgns1129.smartorder.domain.StoreMember;
-import naver.rlgns1129.smartorder.domain.StoreMenu;
 
 //설정 파일을 읽어오는 코드
 @RunWith(SpringJUnit4ClassRunner.class)

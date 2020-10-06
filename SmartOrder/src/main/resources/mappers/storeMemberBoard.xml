@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD: XML로 작성한 내용을 해석하는 위치를 설정 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="storeMemberBoard">
+
+	<!-- 게시글 전체 목록 조회 -->
+	<select id="list" resultType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
+		select boardNo, boardTitle, boardRegdate, boardreadCnt, memberNickname 
+		from storeMemberBoardTBL
+		order by boardUpdateDate desc
+	</select>
+	
+	
+	<!-- 게시글 작성 -->
+	<insert id="write" parameterType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
+	insert into storeMemberBoardTBL(boardTitle, boardContent, boardIp, memberNickname)
+	values(#{boardTitle}, #{boardContent}, #{boardIp}, #{memberNickname})
+	</insert>
+	
+	
+</mapper>
+
+	
