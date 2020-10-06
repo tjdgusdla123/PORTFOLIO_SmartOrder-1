@@ -28,7 +28,12 @@ window.addEventListener("load", function () {
 
 			msg +=  "<tr>" + 
     						"<td  align='right'>"+imsi.boardNo+"</td>"+
-							"<td>"+ imsi.boardTitle+"</td>"+
+    						    					
+    						"<td  align='right'>"+ "<input type='button' data-toggle='modal' data-target='#menuModal' id = 'boardTitleBtn'" +
+    				"onclick='boardDetail(" + '"'+ imsi.boardNo + '"' + ")'"+  "value= '"+ imsi.boardTitle+ "'/>"+"</td>"+
+    						
+    						
+							
 							"<td>"+ imsi.memberNickname+"</td>"+
     						"<td>"+ imsi.boardDispdate+"</td>"+
     						"<td>"+ imsi.boardReadcnt+"</td>"+
@@ -40,21 +45,46 @@ window.addEventListener("load", function () {
 			
 		msg += "<br/><br/>"
 
-		console.log(msg)
 		getList.innerHTML = msg;
 
 	});
 })
 
-	// getList.addEventListener("load", function(event){
-	// 	console.log("boardWriteForm 안으로 들어옴")
-	// 	var url = "/board/getlist";
-	//   	var request = new XMLHttpRequest();
-		  	
-	// 	  request.open("get", url, true);
-	// 	  request.send();
-	// 	  request.addEventListener('load', function(e){
-	// 	  var map = JSON.parse(e.target.responseText);
-	// 		 console.log(map);
-	// 	  });
-	// });
+	//버튼을 누르면 메뉴코드를 가지고 메뉴상세정보 조회하는 함수
+	function boardDetail(boardNo){
+	
+		var boardDetail = document.getElementById("boardDetail");
+		
+		//alert(boardTitle);
+	
+		boardDetailURL = '/board/detail?boardno=' + boardNo;
+		//console.log(boardDetailURL);
+		
+		var request = new XMLHttpRequest();
+	
+		request.open("GET", boardDetailURL);
+		request.send('');
+		
+		request.onload = function() {
+		var map = request.responseText;
+		
+		var list = JSON.parse(map);
+		
+		
+		//이것이 정답!!!!
+		console.log(list);
+		 	
+		var msg =	  "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
+					+ "<div style='text-align:center'>"+ list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
+					
+		
+		console.log(msg)
+		
+		boardDetail.innerHTML = msg;
+		
+		
+		
+		
+		
+		}
+	}

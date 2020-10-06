@@ -5,7 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>Insert title here</title>
 <!-- Bootstrap core CSS -->
 <link
@@ -95,28 +99,30 @@
 		</div>
 	</nav>
 	
-	<div id=getList>getlist</div>
-	<%-- <table>
-		<tr>
-			<th width="11%">글번호</th>
-			<th width="46%">제목</th>
-			<th width="16%">작성자</th>
-			<th width="16%">작성일</th>
-			<th width="11%">조회수</th>
-		</tr>
-		<tr>
-			<td align="right">${vo.bno}&nbsp;</td>
-			<td>&nbsp; ${vo.title}</td>
-			<td>&nbsp;${vo.nickname}</td>
-			<td>&nbsp; ${vo.dispdate}</td>
-			<td align="right"><span class="badge bg-blue">
-					${vo.readcnt}</span>&nbsp;</td>
-		</tr>
-	</table> --%>
+	<div id=getList></div>
 
+	<div class="modal fade" id="menuModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">메뉴 상세보기</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="boardDetail"></div>
+				<div class="modal-footer">
 
-
-
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">뒤로가기</button>
+					<button type="button" class="btn btn-primary">메뉴
+						추가</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- footer -->
 	<%@ include file="../include/footer.jsp"%>

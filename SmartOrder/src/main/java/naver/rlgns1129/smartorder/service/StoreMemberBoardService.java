@@ -13,13 +13,13 @@ import naver.rlgns1129.smartorder.domain.StoreMemberBoard;
 
 public interface StoreMemberBoardService {
     //게시물 글쓰기 
-	public  Map<String,Object> storeMemberBoardWrite(HttpServletRequest request, HttpServletResponse response);
+	public Map<String,Object> storeMemberBoardWrite(HttpServletRequest request, HttpServletResponse response);
 	
 	//게시판 목록보기
 	public Map<String,Object> storeMemberBoardList(HttpServletRequest request, HttpServletResponse response);
 	
 	//게시글 상세보기 
-	public void  memberBoardDetail(HttpServletRequest request);
+	public Map<String,Object> storeMemberBoardDetail(HttpServletRequest request , HttpServletResponse response);
 
 
 	

@@ -29,9 +29,9 @@ public class StoreMemberBoardDAO {
 		
 	}
 	//게시글 상세보기 
-    public StoreMemberBoard memberBoardDetail(int boardBno) {
-    	System.out.println("dao 상세보기 "+sqlSession);
-    	return sqlSession.selectOne("storememberboard.memberboarddetail",boardBno);
+    public StoreMemberBoard storeMemberBoardDetail(int boardBno) {
+		System.out.println("StoreMemberBoardDAO.storeMemberBoardDetail 도착 ");
+    	return sqlSession.selectOne("storeMemberBoard.detail",boardBno);
    	
     }
    

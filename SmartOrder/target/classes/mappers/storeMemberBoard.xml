@@ -20,6 +20,13 @@
 	values(#{boardTitle}, #{boardContent}, #{boardIp}, #{memberNickname})
 	</insert>
 	
+	<!-- 게시글 상세보기 -->
+	<select id="detail" parameterType="java.lang.Integer" resultType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
+		select boardTitle, boardContent , boardRegdate 
+		from storeMemberBoardTBL 
+		where boardNo = #{boardNo}
+	</select>
+	
 	
 </mapper>
 

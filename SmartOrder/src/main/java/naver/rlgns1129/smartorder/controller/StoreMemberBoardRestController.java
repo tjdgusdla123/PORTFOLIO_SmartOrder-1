@@ -44,7 +44,18 @@ public class StoreMemberBoardRestController {
 		return map;
 		
 	}
-		
+	
+	//게시글 상세보기 조회
+	@RequestMapping(value ="board/detail", method = RequestMethod.GET)
+	public Map<String,Object> storeMemberBoardDetail(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("StoreMemberBoardRestController.storeMemberBoardDetail 도착");
+
+		Map<String,Object> map = storeMemberBoardService.storeMemberBoardDetail(request, response);
+		System.out.println("StoreMemberBoardRestController.storeMemberBoardList.map : " + map);
+		return map;
+			
+	}
+	
 		
 	}
 	

@@ -24,7 +24,7 @@ public class StoreMemberBoardTest {
 	
 //	@Test
 //	//게시글 작성
-//	public void memberBoardWrite() {
+//	public void storeMemberBoardWrite() {
 //		StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
 //		storeMemberBoard.setBoardTitle("write junit test");
 //		storeMemberBoard.setBoardContent("spring junit testing");
@@ -34,10 +34,21 @@ public class StoreMemberBoardTest {
 //		System.out.println(sqlSession.insert("storeMemberBoard.write", storeMemberBoard));
 //	}
 	
+//	@Test
+//	//게시글 조회
+//	public void storeMemberBoardList() {
+//
+//		System.out.println(sqlSession.selectList("storeMemberBoard.list"));
+//	}
+	
 	@Test
-	//게시글 조회
-	public void memberBoardList() {
-
-		System.out.println(sqlSession.selectList("storeMemberBoard.list"));
+	//게시글 상세보기
+	public void storeMemberBoardDetail() {
+		int boardNo = 7;
+		
+		StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
+		storeMemberBoard = sqlSession.selectOne("storeMemberBoard.detail", boardNo);
+		System.out.println(storeMemberBoard);
 	}
+	
 }

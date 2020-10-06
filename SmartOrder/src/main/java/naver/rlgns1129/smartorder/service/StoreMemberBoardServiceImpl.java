@@ -164,8 +164,21 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 	}
 
 	@Override
-	public void memberBoardDetail(HttpServletRequest request) {
+	public Map<String,Object> storeMemberBoardDetail(HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
 
+		Integer boardNo = Integer.parseInt(request.getParameter("boardno"));
+
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDetail.boardNo 파라미터 : " + boardNo);
+
+		StoreMemberBoard storeMemberBoard = storeMemberBoardDao.storeMemberBoardDetail(boardNo);
+		
+		map.put("storeMemberBoardDetail", storeMemberBoard);
+		
+		return map;
 	}
+
+	
 
 }
