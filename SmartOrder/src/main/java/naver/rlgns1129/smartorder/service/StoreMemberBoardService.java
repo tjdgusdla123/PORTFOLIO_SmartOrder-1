@@ -19,6 +19,11 @@ public interface StoreMemberBoardService {
 	//게시글 상세보기 
 	public Map<String,Object> storeMemberBoardDetail(HttpServletRequest request , HttpServletResponse response);
 
+	//게시글 수정
+	public Map<String, Object> storeMemberBoardUpdate(HttpServletRequest request , HttpServletResponse response);
+	
+	//게시글 삭제
+	public Map<String, Object> storeMemberBoardDelete(HttpServletRequest request , HttpServletResponse response);
 
 	
 	

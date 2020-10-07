@@ -86,10 +86,8 @@
 						<li class="nav-item"><a class="nav-link"
 							href="/board/write">글쓰기</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/shop/orderList">글수정</a></li>
+							href="#">내글보기</a></li>
 
-						<li class="nav-item"><a class="nav-link" href="/user/update">글삭제</a>
-						</li>
 						<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
 						</li>
 					</c:if>
@@ -100,13 +98,14 @@
 	</nav>
 	
 	<div id=getList></div>
-
-	<div class="modal fade" id="menuModal" tabindex="-1"
+	
+	<!-- BoardDetailModal -->
+	<div class="modal fade" id="boardDetailModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">메뉴 상세보기</h5>
+					<h5 class="modal-title" id="exampleModalLabel">게시글 상세보기</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -117,8 +116,98 @@
 
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">뒤로가기</button>
-					<button type="button" class="btn btn-primary">메뉴
-						추가</button>
+					<a data-dismiss="modal" data-toggle="modal" href="#boardUpdateModal" class="btn btn-primary">글수정</a>	
+					<a data-dismiss="modal" data-toggle="modal" href="#boardDeleteModal" class="btn btn-primary">글삭제</a>	
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- BoardUpdateModal -->
+	<div class="modal fade" id="boardUpdateModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">게시글 수정</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" >
+					<form method="post" id="boardWriteForm"
+						enctype="multipart/form-data">
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls">
+								<label>제목</label> <input type="text" class="form-control"
+									placeholder="제목" id="boardTitle" name="boardTitle" required
+									data-validation-required-message="제목을 작성해 주세요.">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls">
+								<label>내용</label>
+								<textarea rows="10" class="form-control"
+									placeholder="글을 작성해 주세요." id="boardContent" name="boardContent"
+									required data-validation-required-message="내용을 작성해주세요."></textarea>
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls">
+								<label>이미지</label> <input type="file" class="form-control"
+									id="boardFile" name="boardFile" accept="image/*">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<br>
+						<div id="success"></div>
+						<button type="button" class="btn btn-primary" id="boardWriteBtn">Send</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary">수정
+						</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- BoardDeleteModal -->
+	<div class="modal fade" id="boardDeleteModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">게시글 삭제</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" >글을 삭제하시겠습니까?<br/>글을 삭제하면 복구할 수 없습니다.<br/><br/>글 삭제를 위해 비밀번호를 입력하세요.<br/>
+				<div id='pwcheckmsg'></div>
+				<form method="post" id="passwordcheckform" >
+				<input type="password" id="memberpassword" name="memberpassword">
+				</form>
+				</div>
+				
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
+					<button type="button" id="deleteBtn" onclick="boardDelete()" class="btn btn-primary">삭제
+						</button>
+					
 				</div>
 			</div>
 		</div>

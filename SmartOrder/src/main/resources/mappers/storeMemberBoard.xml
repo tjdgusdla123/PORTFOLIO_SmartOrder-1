@@ -22,12 +22,23 @@
 	
 	<!-- 게시글 상세보기 -->
 	<select id="detail" parameterType="java.lang.Integer" resultType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
-		select boardTitle, boardContent , boardRegdate ,boardFile
+		select boardTitle, boardContent , boardRegdate ,boardFile, memberNickname
 		from storeMemberBoardTBL 
 		where boardNo = #{boardNo}
 	</select>
 	
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="java.lang.Integer">
+	update storeMemberBoardTBL 
+	set boardTitle = #{boardTitle} , boardContent = #{boardContent} ,boardFile = #{boardFile} 
+	where boardNo = #{boardNo}
+	</update>
 	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from storeMemberBoardTBL 
+		where boardNo = #{boardNo}
+	</delete>
 </mapper>
 
 	

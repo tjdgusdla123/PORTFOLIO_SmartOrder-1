@@ -55,7 +55,19 @@ public class StoreMemberBoardRestController {
 			
 	}
 	
+	//게시글 삭제
+	@RequestMapping(value ="board/delete", method = RequestMethod.POST)
+	public Map<String,Object> storeMemberBoardDelete(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("StoreMemberBoardRestController.storeMemberBoardDelete 도착");
 		
+		Map<String,Object> map = storeMemberBoardService.storeMemberBoardDelete(request, response);
+		System.out.println("StoreMemberBoardRestController.storeMemberBoardList.map : " + map);
+		return map;
+			
 	}
+	
+	
+	
+}
 	
 

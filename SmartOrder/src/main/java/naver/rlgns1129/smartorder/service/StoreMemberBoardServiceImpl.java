@@ -14,22 +14,28 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import naver.rlgns1129.smartorder.dao.StoreMemberBoardDAO;
+import naver.rlgns1129.smartorder.dao.StoreMemberDAO;
+import naver.rlgns1129.smartorder.domain.StoreMember;
 import naver.rlgns1129.smartorder.domain.StoreMemberBoard;
 
 @Service
 public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 	@Autowired
 	private StoreMemberBoardDAO storeMemberBoardDao;
-
+	@Autowired
+	private StoreMemberDAO storeMemberDao;
+	
+	
+	
 	// 게시판 글 작성
 	@Override
-	
 	public Map<String, Object> storeMemberBoardWrite(MultipartHttpServletRequest request, HttpServletResponse response) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -61,8 +67,9 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 					if(boardImage.getOriginalFilename().length()>0) {
 						//파일이름 생성 - 중복된 파일이름을 업로드 할까봐서 수정
 						boardFile = UUID.randomUUID() + boardImage.getOriginalFilename();
-						//파일 업로드 하기 
-						File f = new File(filePath + "/" + boardFile);
+						//파일 업로드 하기 (맥과 윈도우의 운영체제에 따라 경로 \와 /차이가 있는데 이것을 File.separator가 해결해 준다. 
+						File f = new File(filePath + File.separator + boardFile);
+						
 						boardImage.transferTo(f);
 					}else {
 						boardFile = "";
@@ -161,6 +168,51 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 		map.put("storeMemberBoardDetail", storeMemberBoard);
 		
 		return map;
+	}
+
+	@Override
+	public Map<String, Object> storeMemberBoardUpdate(HttpServletRequest request, HttpServletResponse response) {
+		/*
+		   게시글을 수정하기 위한 조건.
+		   1. 세션에 저장되어있는 아이디와 수정하기 전에 체크하는 비밀번호가 일치해야한다. (member pwcheck로 1차적으로 검사함.)
+		   2. 게시글의 작성자와 로그인한 사람이 일치해야한다.
+		   3. 위 조건이 만족하면 게시글을 수정 한다.	 
+		 */	
+		return null;
+	}
+	
+	
+	@Override
+	public Map<String, Object> storeMemberBoardDelete(HttpServletRequest request, HttpServletResponse response) {
+		/*
+		   게시글을 삭제하기 위한 조건.
+		   1. 세션에 저장되어있는 아이디와 지우기전에 체크하는 비밀번호가 일치해야한다. (member pwcheck로 1차적으로 검사함.)
+		   2. 게시글의 작성자와 로그인한 사람이 일치해야한다.
+		   3. 위 조건이 만족하면 삭제를 한다.	 
+		 */		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", false);
+		
+		Integer boardNo = Integer.parseInt(request.getParameter("boardno"));
+		
+		StoreMemberBoard storeMemberBoardDetail = storeMemberBoardDao.storeMemberBoardDetail(boardNo);
+		Map<String, Object> storeMemberInfo = (Map<String, Object>)request.getSession().getAttribute("storememberinfo");
+		String storeMemberNickname = (String)storeMemberInfo.get("storemembernickname");
+		
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDelete.storeMemberNickname 파라미터 : " + storeMemberNickname);
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDelete.storeMemberBoardDetail.getMemberNickname() : " + storeMemberBoardDetail.getMemberNickname());
+
+	
+		
+		if(storeMemberBoardDetail.getMemberNickname().equals(storeMemberNickname)) {
+			storeMemberBoardDao.storeMemberBoardDelete(boardNo);
+			resultMap.put("result", true);
+		}
+					
+			
+		
+		return resultMap;
+		
 	}
 
 	

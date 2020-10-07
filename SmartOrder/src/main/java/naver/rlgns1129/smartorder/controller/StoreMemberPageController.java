@@ -42,7 +42,7 @@ public class StoreMemberPageController {
 	public String update(Model model, HttpSession session){
 		System.out.println("StoreMemberRestController.update 도착");
 		if(session.getAttribute("storememberinfo") == null) {
-			return "redirect:user/login";
+			return "redirect:/user/login";
 		}else {
 			System.out.println("StoreMemberRestController.update.else 구문 도착");
 			return "member/pwcheck";

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import naver.rlgns1129.smartorder.domain.StoreMember;
 import naver.rlgns1129.smartorder.domain.StoreMemberBoard;
 
 
@@ -22,21 +23,29 @@ public class StoreMemberBoardDAO {
 	}
 	
    //게시글 목록 
-	public List<StoreMemberBoard>storeMemberBoardList(){
+	public List<StoreMemberBoard> storeMemberBoardList(){
 		System.out.println("StoreMemberBoardDAO.storeMemberBoardWrite 도착 ");
 		return sqlSession.selectList("storeMemberBoard.list");
 		
 		
 	}
 	//게시글 상세보기 
-    public StoreMemberBoard storeMemberBoardDetail(int boardBno) {
+    public StoreMemberBoard storeMemberBoardDetail(int boardNo) {
 		System.out.println("StoreMemberBoardDAO.storeMemberBoardDetail 도착 ");
-    	return sqlSession.selectOne("storeMemberBoard.detail",boardBno);
+    	return sqlSession.selectOne("storeMemberBoard.detail",boardNo);
    	
     }
    
-    public void memberBoardUpdateReadcnt(int boardBno) {
-    	sqlSession.update("storememberboard.memberboardupdatereadcnt",boardBno);
-    }
+    //게시글 수정
+  	public int storeMemberBoardUpdate(int boardNo) {
+		System.out.println("StoreMemberBoardDAO.storeMemberBoardUpdate 도착 ");
+  		return sqlSession.update("storeMemberBoard.update", boardNo);
+  	}
+  	
+  	//게시글 삭제
+  	public int storeMemberBoardDelete(int boardNo) {
+		System.out.println("StoreMemberBoardDAO.storeMemberBoardDelete 도착 ");
+  		return sqlSession.delete("storeMemberBoard.delete", boardNo);
+  	}
 	
 }
