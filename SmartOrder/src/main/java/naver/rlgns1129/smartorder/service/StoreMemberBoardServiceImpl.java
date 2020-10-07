@@ -166,7 +166,7 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 		StoreMemberBoard storeMemberBoard = storeMemberBoardDao.storeMemberBoardDetail(boardNo);
 		
 		map.put("storeMemberBoardDetail", storeMemberBoard);
-		
+		 
 		return map;
 	}
 

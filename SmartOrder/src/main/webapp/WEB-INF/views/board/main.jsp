@@ -116,8 +116,9 @@
 
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">뒤로가기</button>
-					<a data-dismiss="modal" data-toggle="modal" href="#boardUpdateModal" class="btn btn-primary">글수정</a>	
-					<a data-dismiss="modal" data-toggle="modal" href="#boardDeleteModal" class="btn btn-primary">글삭제</a>	
+					<div id=updateModal></div>	
+					<div id=deleteModal></div>
+				
 				</div>
 			</div>
 		</div>
@@ -159,6 +160,14 @@
 							<div class="form-group floating-label-form-group controls">
 								<label>이미지</label> <input type="file" class="form-control"
 									id="boardFile" name="boardFile" accept="image/*">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls">
+								<label>비밀번호 확인</label> <input type="password" class="form-control"
+									placeholder="비밀번호를 입력해 주세요." id="boardUpdatePassword" name="memberpassword" required
+									data-validation-required-message="비밀번호를 입력해 주세요.">
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>

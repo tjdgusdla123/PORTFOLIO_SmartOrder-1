@@ -89,6 +89,33 @@ function boardDetail(boardNo) {
 
 		boardDetail.innerHTML = msg;
 
+		console.log('세션정보')
+		console.log(sessionStorage.getItem('storeMemberNicknameSession'))		
+		
+
+		var updateModal = document.getElementById('updateModal')
+		var deleteModal = document.getElementById('deleteModal')
+
+		if(list['storeMemberBoardDetail'].memberNickname == sessionStorage.getItem('storeMemberNicknameSession')){
+			console.log('닉네임 일치')			
+
+			var boardUpdateModalDiv = '<div id=boardModalUpdateDiv><a data-dismiss="modal" data-toggle="modal" href="#boardUpdateModal" class="btn btn-primary">글수정</a></div>'
+			var boardDeleteModalDiv = '<div id=boardModalDeleteDiv><a data-dismiss="modal" data-toggle="modal" href="#boardDeleteModal" class="btn btn-primary">글삭제</a></div>'
+					
+			updateModal.innerHTML = boardUpdateModalDiv
+			deleteModal.innerHTML = boardDeleteModalDiv
+
+		}else{
+			console.log('닉네임 불일치')
+			updateModal.innerHTML = ""
+			deleteModal.innerHTML = ""
+		}
+
+		
+
+		
+		
+		
 
 
 	}
