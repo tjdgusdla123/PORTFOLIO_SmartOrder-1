@@ -171,14 +171,135 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 	}
 
 	@Override
-	public Map<String, Object> storeMemberBoardUpdate(HttpServletRequest request, HttpServletResponse response) {
+	public Map<String, Object> storeMemberBoardUpdate(MultipartHttpServletRequest request, HttpServletResponse response) {
 		/*
 		   게시글을 수정하기 위한 조건.
 		   1. 세션에 저장되어있는 아이디와 수정하기 전에 체크하는 비밀번호가 일치해야한다. (member pwcheck로 1차적으로 검사함.)
 		   2. 게시글의 작성자와 로그인한 사람이 일치해야한다.
 		   3. 위 조건이 만족하면 게시글을 수정 한다.	 
 		 */	
-		return null;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", false);
+		
+		Integer boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String boardTitle = request.getParameter("boardTitle");
+		String boardContent = request.getParameter("boardContent");
+		Map<String, Object> storeMemberInfo = (Map<String, Object>) request.getSession().getAttribute("storememberinfo");
+		String memberNickname = (String) storeMemberInfo.get("storemembernickname");
+		MultipartFile boardImage =request.getFile("boardFile");
+
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.boardNo 파라미터 : " + boardNo);
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.boardTitle 파라미터 : " + boardTitle);
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.boardContent 파라미터 : " + boardContent);
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.memberNickname 파라미터 : " + memberNickname);
+		
+		
+		//나중에 수정해야할 사항.
+		//boardNo를 받아서 상세보기 조회 후 파일 네임을 가져와야 한다.
+//		StoreMemberBoard storeMemberBoardDetail = new StoreMemberBoard();	
+//		storeMemberBoardDetail = storeMemberBoardDao.storeMemberBoardDetail(boardNo);
+//		
+		
+				String boardFile = "";
+					
+					//파일이 존재하는 경우에만 
+					if(boardImage != null && boardImage.isEmpty() == false) {
+						//파일을 업로드할 디렉토리 경로를 설정
+						String filePath = request.getServletContext().getRealPath("/board/img");
+						System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.filePath : " + filePath);
+						
+						
+						
+						try {
+							if(boardImage.getOriginalFilename().length()>0) {
+								//파일이름 생성 - 중복된 파일이름을 업로드 할까봐서 수정
+								boardFile = UUID.randomUUID() + boardImage.getOriginalFilename();
+								//파일 업로드 하기 (맥과 윈도우의 운영체제에 따라 경로 \와 /차이가 있는데 이것을 File.separator가 해결해 준다. 
+								File f = new File(filePath + File.separator + boardFile);
+								
+								boardImage.transferTo(f);
+							}else {
+								boardFile = "";
+							}
+							
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+							e.printStackTrace();
+						} 
+
+//						try(FileOutputStream fos = new FileOutputStream(f)){
+//							fos.write(boardFile.getBytes());fos.flush();
+//						}catch(Exception e) {
+//							System.out.println("파일 업로드 예외:" + e.getMessage());
+//						}
+			 
+					}
+					
+				
+
+				if(boardFile.length()>0) {
+					
+					// 필요한 데이터를 생성
+					StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
+
+					String boardIp = request.getRemoteAddr();
+					storeMemberBoard.setBoardNo(boardNo);
+					storeMemberBoard.setBoardFile(boardFile);
+					storeMemberBoard.setBoardTitle(boardTitle);
+					storeMemberBoard.setBoardContent(boardContent);
+					storeMemberBoard.setMemberNickname(memberNickname);
+					storeMemberBoard.setBoardIp(boardIp);
+
+					System.out.println(
+							"StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardTitle  : " + boardTitle);
+					System.out.println(
+							"StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardContent  : " + boardTitle);
+					System.out.println(
+							"StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setMemberNickname  : " + memberNickname);
+					System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardIp  : " + boardIp);
+					System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardFile  : " + boardFile);
+					System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardFile.length  : " + boardFile.length());
+					
+					
+					int row = storeMemberBoardDao.storeMemberBoardUpdateIncludeImage(storeMemberBoard);
+					// 저장에 성공하면 map의 result에 true 저장
+					if (row > 0) {
+						System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate 게시글 저장 성공");
+
+						map.put("result", true);
+					}
+				}else {
+					// 필요한 데이터를 생성
+					StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
+
+					String boardIp = request.getRemoteAddr();
+					storeMemberBoard.setBoardNo(boardNo);
+					storeMemberBoard.setBoardTitle(boardTitle);
+					storeMemberBoard.setBoardContent(boardContent);
+					storeMemberBoard.setMemberNickname(memberNickname);
+					storeMemberBoard.setBoardIp(boardIp);
+
+					System.out.println(
+							"StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardTitle  : " + boardTitle);
+					System.out.println(
+							"StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardContent  : " + boardTitle);
+					System.out.println(
+							"StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setMemberNickname  : " + memberNickname);
+					System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardIp  : " + boardIp);
+					System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate.storeMemberBoard.setBoardFile.length  : " + boardFile.length());
+					
+					int row = storeMemberBoardDao.storeMemberBoardUpdate(storeMemberBoard);
+					// 저장에 성공하면 map의 result에 true 저장
+					if (row > 0) {
+						System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdateIncludeImage 게시글 저장 성공");
+
+						map.put("result", true);
+					}
+				}
+
+				return map;
+
 	}
 	
 	
@@ -213,6 +334,31 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 		
 		return resultMap;
 		
+	}
+
+	//게시글 상세보기 닉네임과 boardNo으로 자신이 작성한 게시글 불러오기. 
+	@Override
+	public Map<String, Object> storeMemberBoardDetailUpdate(HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		Integer boardNo = Integer.parseInt(request.getParameter("boardno"));
+		String storeMemberNickname = request.getParameter("storemembernickname");
+		
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDetailUpdate.boardNo 파라미터 : " + boardNo);
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDetailUpdate.storeMemberNickname 파라미터 : " + storeMemberNickname);
+
+		StoreMemberBoard sendStoreMemberBoard = new StoreMemberBoard();
+		sendStoreMemberBoard.setBoardNo(boardNo);
+		sendStoreMemberBoard.setMemberNickname(storeMemberNickname);
+		
+		
+		StoreMemberBoard storeMemberBoard = storeMemberBoardDao.storeMemberBoardDetailUpdate(sendStoreMemberBoard);
+		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDetailUpdate.storeMemberBoard 파라미터 : " + storeMemberBoard);
+
+		map.put("storeMemberBoardDetailUpdate", storeMemberBoard);
+		 
+		return map;
 	}
 
 	

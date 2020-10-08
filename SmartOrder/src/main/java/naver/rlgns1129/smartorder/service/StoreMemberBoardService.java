@@ -18,9 +18,12 @@ public interface StoreMemberBoardService {
 	
 	//게시글 상세보기 
 	public Map<String,Object> storeMemberBoardDetail(HttpServletRequest request , HttpServletResponse response);
+	
+    //게시글 상세보기 닉네임과 boardNo으로 자신이 작성한 게시글 불러오기. 
+	public Map<String,Object> storeMemberBoardDetailUpdate(HttpServletRequest request , HttpServletResponse response);
 
 	//게시글 수정
-	public Map<String, Object> storeMemberBoardUpdate(HttpServletRequest request , HttpServletResponse response);
+	public Map<String, Object> storeMemberBoardUpdate(MultipartHttpServletRequest request , HttpServletResponse response);
 	
 	//게시글 삭제
 	public Map<String, Object> storeMemberBoardDelete(HttpServletRequest request , HttpServletResponse response);

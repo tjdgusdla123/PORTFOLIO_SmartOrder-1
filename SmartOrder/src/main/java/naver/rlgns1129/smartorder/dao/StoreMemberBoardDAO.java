@@ -35,11 +35,24 @@ public class StoreMemberBoardDAO {
     	return sqlSession.selectOne("storeMemberBoard.detail",boardNo);
    	
     }
+    
+    //게시글 상세보기 닉네임과 boardNo으로 자신이 작성한 게시글 불러오기. 
+    public StoreMemberBoard storeMemberBoardDetailUpdate(StoreMemberBoard storeMemberBoard) {
+		System.out.println("StoreMemberBoardDAO.storeMemberBoardDetailUpdate 도착 ");
+    	return sqlSession.selectOne("storeMemberBoard.detailUpdate", storeMemberBoard);
+   	
+    }
    
     //게시글 수정
-  	public int storeMemberBoardUpdate(int boardNo) {
+  	public int storeMemberBoardUpdate(StoreMemberBoard storeMemberBoard) {
 		System.out.println("StoreMemberBoardDAO.storeMemberBoardUpdate 도착 ");
-  		return sqlSession.update("storeMemberBoard.update", boardNo);
+  		return sqlSession.update("storeMemberBoard.update", storeMemberBoard);
+  	}
+  	
+    //게시글 수정 이미지포함
+  	public int storeMemberBoardUpdateIncludeImage(StoreMemberBoard storeMemberBoard) {
+		System.out.println("StoreMemberBoardDAO.storeMemberBoardUpdate 도착 ");
+  		return sqlSession.update("storeMemberBoard.updateIncludeImage", storeMemberBoard);
   	}
   	
   	//게시글 삭제

@@ -41,14 +41,54 @@ public class StoreMemberBoardTest {
 //		System.out.println(sqlSession.selectList("storeMemberBoard.list"));
 //	}
 	
-	@Test
-	//게시글 상세보기
-	public void storeMemberBoardDetail() {
-		int boardNo = 7;
-		
-		StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
-		storeMemberBoard = sqlSession.selectOne("storeMemberBoard.detail", boardNo);
-		System.out.println(storeMemberBoard);
-	}
+//	@Test
+//	//게시글 상세보기
+//	public void storeMemberBoardDetail() {
+//		int boardNo = 7;
+//		
+//		StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
+//		storeMemberBoard = sqlSession.selectOne("storeMemberBoard.detail", boardNo);
+//		System.out.println(storeMemberBoard);
+//	}
+	
+	/*
+	select boardTitle, boardContent , boardRegdate ,boardFile, memberNickname
+	from storeMemberBoardTBL 
+	where boardNo = #{boardNo}, memberNickname = #{memberNickname}
+	 */
+	
+//	@Test
+//	//게시글 상세보기
+//	public void storeMemberBoardDetailUpdate() {
+//		int boardNo = 1;
+//		
+//		StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
+//		storeMemberBoard.setBoardNo(1);
+//		storeMemberBoard.setMemberNickname("s128000");
+//		
+//		StoreMemberBoard storeMemberBoard1 = new StoreMemberBoard();
+//		
+//		storeMemberBoard1 = sqlSession.selectOne("storeMemberBoard.detailUpdate", storeMemberBoard);
+//		
+//		System.out.println(storeMemberBoard1.toString());
+//	}	
+	
+//	@Test
+//	//게시글 수정
+//	public void storeMemberBoardDetailUpdate() {
+//				
+//		StoreMemberBoard storeMemberBoard = new StoreMemberBoard();
+//		storeMemberBoard.setBoardContent("aa");
+//		storeMemberBoard.setBoardTitle("bb");
+//		
+//		
+//		storeMemberBoard.setMemberNickname("s128000");
+//		
+//		StoreMemberBoard storeMemberBoard1 = new StoreMemberBoard();
+//		
+//		storeMemberBoard1 = sqlSession.selectOne("storeMemberBoard.detailUpdate", storeMemberBoard);
+//		
+//		System.out.println(storeMemberBoard1.toString());
+//	}	
 	
 }

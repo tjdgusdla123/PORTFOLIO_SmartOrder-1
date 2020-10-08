@@ -50,10 +50,34 @@ public class StoreMemberBoardRestController {
 		System.out.println("StoreMemberBoardRestController.storeMemberBoardDetail 도착");
 		
 		Map<String,Object> map = storeMemberBoardService.storeMemberBoardDetail(request, response);
-		System.out.println("StoreMemberBoardRestController.storeMemberBoardList.map : " + map);
+		System.out.println("StoreMemberBoardRestController.storeMemberBoardDetail.map : " + map);
 		return map;
 			
 	}
+	
+	//게시글 상세보기 닉네임과 boardNo으로 자신이 작성한 게시글 불러오기. 
+	@RequestMapping(value ="board/detailupdate", method = RequestMethod.GET)
+	public Map<String,Object> storeMemberBoardDetailUpdate(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("StoreMemberBoardRestController.storeMemberBoardDetailUpdate 도착");
+		
+		Map<String,Object> map = storeMemberBoardService.storeMemberBoardDetailUpdate(request, response);
+		System.out.println("StoreMemberBoardRestController.storeMemberBoardDetailUpdate.map : " + map);
+		return map;
+			
+	}
+	
+	//게시글 수정
+		@RequestMapping(value ="board/update", method = RequestMethod.POST)
+		public Map<String,Object> storeMemberBoardUpdate(MultipartHttpServletRequest request, HttpServletResponse response){
+			System.out.println("StoreMemberBoardRestController.storeMemberBoardUpdate 도착");
+			
+			Map<String,Object> map = storeMemberBoardService.storeMemberBoardUpdate(request, response);
+			System.out.println("StoreMemberBoardRestController.storeMemberBoardDetailUpdate.map : " + map);
+			return map;
+				
+	}
+	
+	
 	
 	//게시글 삭제
 	@RequestMapping(value ="board/delete", method = RequestMethod.POST)

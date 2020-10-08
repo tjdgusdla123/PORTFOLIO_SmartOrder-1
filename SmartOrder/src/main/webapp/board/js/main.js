@@ -55,6 +55,16 @@ window.addEventListener("load", function () {
 
 
 //버튼을 누르면 메뉴코드를 가지고 메뉴상세정보 조회하는 함수
+/*
+게시글 상세정보 모달창에 있는 수정 및 삭제할때
+본인아이디로 작성한 글이 아니면 모달창에 수정 및 삭제 버튼이 출력이 안되고
+본인아이디로 작성한 글이면 수정 및 삭제가 가능하게 구현
+
+로그인할때 자바스크립트 코드로 세션에 로그인한 아이디를 저장해놓고
+게시판 상세보기 가져올때 게시글 작성자와 로그인한 아이디를 비교해서
+동일하면 버튼을 출력해주고 동일하지 않으면 버튼을 출력해주지 않는다.
+*/
+
 function boardDetail(boardNo) {
 	sharedBoardNo = boardNo;
 
@@ -76,9 +86,8 @@ function boardDetail(boardNo) {
 		var list = JSON.parse(map);
 		//이것이 정답!!!!
 		//console.log(list);
-
-
-		if (list['storeMemberBoardDetail'].boardFile != null) {
+		
+		if (list['storeMemberBoardDetail'].boardFile.length > 0) {
 			var msg = "<div style='text-align:center'>" + "<img src='../../board/img/" + list['storeMemberBoardDetail'].boardFile + "' width='350' height='250' class='img-responsive center-block' />" + '<br/>' + '<br/>' + "</div>" + '<br/>'
 				+ "<div style='text-align:center'>" + list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
 				+ "<div style='text-align:center'>" + list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
@@ -99,9 +108,12 @@ function boardDetail(boardNo) {
 		if(list['storeMemberBoardDetail'].memberNickname == sessionStorage.getItem('storeMemberNicknameSession')){
 			console.log('닉네임 일치')			
 
-			var boardUpdateModalDiv = '<div id=boardModalUpdateDiv><a data-dismiss="modal" data-toggle="modal" href="#boardUpdateModal" class="btn btn-primary">글수정</a></div>'
+			var boardUpdateModalDiv = '<div id=boardModalUpdateDiv><button type="button" id="boardUpdateBtn" data-dismiss="modal" data-toggle="modal" href="#boardUpdateModal" onclick="boardUpdateBtn()" class="btn btn-primary">글수정</button></div>'
 			var boardDeleteModalDiv = '<div id=boardModalDeleteDiv><a data-dismiss="modal" data-toggle="modal" href="#boardDeleteModal" class="btn btn-primary">글삭제</a></div>'
-					
+			
+			
+			
+			
 			updateModal.innerHTML = boardUpdateModalDiv
 			deleteModal.innerHTML = boardDeleteModalDiv
 
@@ -176,3 +188,98 @@ function boardDelete() {
 	});
 }
 
+//수정버튼을 누르면 글번호와 세션에 저장된 닉네임을 가지고 메뉴상세정보를 조회해서 모달창으로 가져오는 함수
+function boardUpdateBtn() {
+	console.log('boardUpdateBtn 클릭했습니다.')
+	var boardUpdateBtn = document.getElementById('boardUpdateBtn')
+	var storeMemberNickname = sessionStorage.getItem('storeMemberNicknameSession')
+	var boardNo = document.getElementById('boardNo')
+	var boardTitle = document.getElementById('boardTitle')
+	var boardContent = document.getElementById('boardContent')
+	var boardFile = document.getElementById('boardFile')
+	
+	
+		
+		console.log('boardUpdateBtn.addEventListener 함수 진입.')
+		//http://localhost:8080/board/detailupdate?boardno=1&storemembernickname=s12800
+		var url = "/board/detailupdate?boardno=" + sharedBoardNo + "&storemembernickname=" + storeMemberNickname;
+	
+		var request = new XMLHttpRequest();
+		request.open("get", url, true);
+		
+		request.send('');
+		
+		request.onload = function () {
+		var map = request.responseText;
+
+		var list = JSON.parse(map);
+		//이것이 정답!!!!
+		console.log(list);
+		
+		boardTitle.value = list['storeMemberBoardDetailUpdate'].boardTitle
+		boardContent.value = list['storeMemberBoardDetailUpdate'].boardContent
+		boardNo.value = list['storeMemberBoardDetailUpdate'].boardNo
+		};
+	
+}
+
+function boardUpdate() {
+	console.log('boardUpdate 함수를 클릭했습니다.')
+	var updateBtn = document.getElementById('updateBtn')
+	var storeMemberNickname = sessionStorage.getItem('storeMemberNicknameSession')
+	var boardTitle = document.getElementById('boardTitle')
+	var boardContent = document.getElementById('boardContent')
+	var updatePasswordcheckform = document.getElementById('updatePasswordcheckform')
+	var updatePasswordCheckmsg = document.getElementById('updatePasswordCheckmsg')
+	var boardUpdateForm = document.getElementById('boardUpdateForm')
+
+
+	
+	updateBtn.addEventListener("click", function (event) {
+
+		var flag = false;
+		if (boardUpdatePassword.value.trim().length < 1) {
+			updatePasswordCheckmsg.innerHTML = '비밀번호는 필수 입력입니다.<br/>';
+			updatePasswordCheckmsg.style.color = "red";
+			flag = true;
+		}
+		if (flag == true) {
+			return;
+		}
+
+		var url = "/user/pwcheck";
+
+		var request = new XMLHttpRequest();
+		request.open("post", url, true);
+		var formdata = new FormData(updatePasswordcheckform);
+		request.send(formdata);
+		request.addEventListener('load', function (e) {
+			var map = JSON.parse(e.target.responseText);
+			if (map.result == true) {
+				console.log('비밀번호 체크 성공')
+
+					var url = "/board/update";
+					  var request = new XMLHttpRequest();
+						  
+					  request.open("post", url, true);
+					  var formdata = new FormData(boardUpdateForm);
+					  request.send(formdata);
+					  request.addEventListener('load', function(e){
+					  var map = JSON.parse(e.target.responseText);
+						 if(map.result == true){
+							console.log('게시글 수정 성공')
+							 location.href = "/board/list";
+							 
+						 }else{
+							console.log('게시글 수정 실패')
+						 }
+					  });
+
+			} else {
+				console.log('비밀번호 체크 실패')
+				msg.innerHTML = "잘못된  비밀번호입니다.";
+			}
+		});
+	});
+
+}

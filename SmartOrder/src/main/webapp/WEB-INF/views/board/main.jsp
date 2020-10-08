@@ -56,7 +56,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/">스마트오더</a>
+			<a class="navbar-brand" href="/">게시판</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -137,8 +137,15 @@
 					</button>
 				</div>
 				<div class="modal-body" >
-					<form method="post" id="boardWriteForm"
+					<form method="post" id="boardUpdateForm"
 						enctype="multipart/form-data">
+						<div class="control-group" style ="display:none">
+							<div class="form-group floating-label-form-group controls">
+								<label>글번호</label> <input type="text" class="form-control"
+									placeholder="글번호" id="boardNo" name="boardNo" readonly>
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
 						<div class="control-group">
 							<div class="form-group floating-label-form-group controls">
 								<label>제목</label> <input type="text" class="form-control"
@@ -163,24 +170,28 @@
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>
+						</form>
+						
 						<div class="control-group">
 							<div class="form-group floating-label-form-group controls">
-								<label>비밀번호 확인</label> <input type="password" class="form-control"
+								<div id="updatePasswordCheckmsg"></div>
+								<label>비밀번호 확인</label> 
+								<form method="post" id="updatePasswordcheckform" >
+								<input type="password" class="form-control"
 									placeholder="비밀번호를 입력해 주세요." id="boardUpdatePassword" name="memberpassword" required
 									data-validation-required-message="비밀번호를 입력해 주세요.">
+								</form>	
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>
 						<br>
-						<div id="success"></div>
-						<button type="button" class="btn btn-primary" id="boardWriteBtn">Send</button>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
 
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">수정
+					<button id = "updateBtn" onclick="boardUpdate()" type="button" class="btn btn-primary">수정
 						</button>
 					
 				</div>
