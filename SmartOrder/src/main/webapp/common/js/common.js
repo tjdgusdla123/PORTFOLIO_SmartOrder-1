@@ -2,7 +2,7 @@ setInterval(function() {
 	navigator.geolocation.getCurrentPosition(function(position) {
 		var loc = position.coords.latitude + ":" + position.coords.longitude
 		$.ajax({
-			url:"address",
+			url:"/address",
 			data:{"loc":loc},
 			dataType:"json",
 			success:function(data){

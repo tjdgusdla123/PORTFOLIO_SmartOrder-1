@@ -98,9 +98,9 @@
 							<li><a href="/admin/index">관리자 화면</a></li>
 						</c:if>
 						<li class="nav-item"><a class="nav-link"
-							href="/shop/cartList">카트</a></li>
+							href="#">카트</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/shop/orderList">주문내역</a></li>
+							href="/#">주문내역</a></li>
 
 						<li class="nav-item"><a class="nav-link" href="/user/update">회원정보수정</a>
 						</li>
@@ -180,4 +180,6 @@
 <script
 	src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
 <script src="${pageContext.request.contextPath}/storemenu/js/getmenu.js"></script>
+<script src="${pageContext.request.contextPath}/common/js/common.js"></script>
+
 </html>

@@ -61,4 +61,11 @@ public class StoreMemberBoardDAO {
   		return sqlSession.delete("storeMemberBoard.delete", boardNo);
   	}
 	
+  	//게시글 조회수를 1증가
+  	public void updateReadCnt(int boardNo) {
+  		sqlSession.update("storeMemberBoard.updateReadCnt", boardNo);
+  	}
+  	
+  	
+  	
 }

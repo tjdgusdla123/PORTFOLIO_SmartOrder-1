@@ -97,7 +97,7 @@
 		</div>
 	</nav>
 	
-	<div id=getList></div>
+	<div class= "container" id=getList></div>
 	
 	<!-- BoardDetailModal -->
 	<div class="modal fade" id="boardDetailModal" tabindex="-1"
@@ -246,4 +246,5 @@
 <!-- Custom scripts for this template -->
 <script
 	src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
+<script src="${pageContext.request.contextPath}/common/js/common.js"></script>	
 </html>

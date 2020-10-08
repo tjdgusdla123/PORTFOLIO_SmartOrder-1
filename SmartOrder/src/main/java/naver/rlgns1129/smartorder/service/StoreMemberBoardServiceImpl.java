@@ -164,6 +164,8 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDetail.boardNo 파라미터 : " + boardNo);
 
 		StoreMemberBoard storeMemberBoard = storeMemberBoardDao.storeMemberBoardDetail(boardNo);
+		storeMemberBoardDao.updateReadCnt(boardNo);
+		
 		
 		map.put("storeMemberBoardDetail", storeMemberBoard);
 		 

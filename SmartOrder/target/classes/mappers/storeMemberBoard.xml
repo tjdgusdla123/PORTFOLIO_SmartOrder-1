@@ -37,14 +37,14 @@
 	<!-- 게시글 수정 -->
 	<update id="update" parameterType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
 	update storeMemberBoardTBL 
-	set boardTitle = #{boardTitle} , boardContent = #{boardContent} ,boardIp = #{boardIp}, memberNickname = #{memberNickname}	
+	set boardTitle = #{boardTitle} , boardContent = #{boardContent} ,boardIp = #{boardIp} , boardupdatedate = sysdate() 
 	where boardNo = #{boardNo}
 	</update>
 	
 	<!-- 게시글 수정 이미지포함 -->
 	<update id="updateIncludeImage" parameterType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
 	update storeMemberBoardTBL 
-	set boardTitle = #{boardTitle} , boardContent = #{boardContent} ,boardFile = #{boardFile} ,boardIp = #{boardIp}, memberNickname = #{memberNickname}	
+	set boardTitle = #{boardTitle} , boardContent = #{boardContent} ,boardFile = #{boardFile} ,boardIp = #{boardIp} , boardupdatedate = sysdate() 	
 	where boardNo = #{boardNo}
 	</update>
 	
@@ -53,6 +53,15 @@
 		delete from storeMemberBoardTBL 
 		where boardNo = #{boardNo}
 	</delete>
+	
+	<!-- 글번호를 가지고 조회수를 1증가 -->
+	<update id="updateReadCnt" parameterType="java.lang.Integer">
+		update storeMemberBoardTBL
+		set boardreadCnt = boardreadCnt + 1
+		where boardNo = #{boardNo}
+	</update>
+	
+	
 </mapper>
 
 	

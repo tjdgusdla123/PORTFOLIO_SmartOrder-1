@@ -99,22 +99,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-        <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-        <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
         <form method="post" id="boardWriteForm" enctype="multipart/form-data">
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>제목</label>
               <input type="text" class="form-control" placeholder="제목" id="boardTitle" name="boardTitle" required data-validation-required-message="제목을 작성해 주세요.">
-              <p class="help-block text-danger"></p>
+              <p id= "boardTitleMsg" class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>내용</label>
               <textarea rows="10" class="form-control" placeholder="글을 작성해 주세요." id="boardContent" name="boardContent" required data-validation-required-message="내용을 작성해주세요."></textarea>
-              <p class="help-block text-danger"></p>
+              <p id= "boardContentMsg" class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
@@ -148,5 +145,5 @@
 		src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/board/js/write.js"></script>	
-		
+	<script src="${pageContext.request.contextPath}/common/js/common.js"></script>	
 </html>

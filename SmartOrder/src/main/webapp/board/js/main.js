@@ -14,8 +14,7 @@ window.addEventListener("load", function () {
 		var map = JSON.parse(e.target.responseText);
 		console.log(map);
 
-		var msg = "<div class='container'>" +
-			"<table class='table table-bordered table-striped table-hover table-responsive' border='1'>" +
+		var msg = "<table class='table table-bordered table-striped table-hover table-responsive' border='1'>" +
 			"<tr>" +
 			"<th width='11%'>" + '글번호' + "</th>" +
 			"<th width='46%'>" + '제목' + "</th>" +
@@ -29,22 +28,17 @@ window.addEventListener("load", function () {
 
 
 			msg += "<tr>" +
-				"<td  align='right'>" + imsi.boardNo + "</td>" +
+				"<td  align='right' width='11%'>" + imsi.boardNo + "</td>" +
 
-				"<td  align='right'>" + "<input type='button' data-toggle='modal' data-target='#boardDetailModal' id = 'boardTitleBtn'" +
+				"<td  align='right' width='46%'>" + "<input type='button' data-toggle='modal' data-target='#boardDetailModal' id = 'boardTitleBtn'" +
 				"onclick='boardDetail(" + '"' + imsi.boardNo + '"' + ")'" + "value= '" + imsi.boardTitle + "'/>" + "</td>" +
-
-
-
-				"<td>" + imsi.memberNickname + "</td>" +
-				"<td>" + imsi.boardDispdate + "</td>" +
-				"<td>" + imsi.boardReadcnt + "</td>" +
-
+				"<td width='16%'>" + imsi.memberNickname + "</td>" +
+				"<td width='16%'>" + imsi.boardDispdate + "</td>" +
+				"<td width='11%'>" + imsi.boardReadcnt + "</td>" +
 				"</tr>"
 		}
 
 		msg += "</table>"
-
 		msg += "<br/><br/>"
 
 		getList.innerHTML = msg;
@@ -89,11 +83,11 @@ function boardDetail(boardNo) {
 		
 		if (list['storeMemberBoardDetail'].boardFile.length > 0) {
 			var msg = "<div style='text-align:center'>" + "<img src='../../board/img/" + list['storeMemberBoardDetail'].boardFile + "' width='350' height='250' class='img-responsive center-block' />" + '<br/>' + '<br/>' + "</div>" + '<br/>'
-				+ "<div style='text-align:center'>" + list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
-				+ "<div style='text-align:center'>" + list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
+				+ "<div style='text-align:center'>" + '제목 : ' + list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
+				+ "<div style='text-align:center'>" + '내용 : ' + list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
 		} else {
-			var msg = "<div style='text-align:center'>" + list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
-				+ "<div style='text-align:center'>" + list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
+			var msg = "<div style='text-align:center'>" + '제목 : ' + list['storeMemberBoardDetail'].boardTitle + "</div>" + '<br/>'
+				+ "<div style='text-align:center'>" + '내용 : ' + list['storeMemberBoardDetail'].boardContent + "</div>" + '<br/>'
 		}
 
 		boardDetail.innerHTML = msg;
