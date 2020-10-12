@@ -53,6 +53,14 @@ public class StoreMenuRestController {
 		return map;
 	}
 	
+	@RequestMapping(value = "admin/menu/update" , method = RequestMethod.POST)
+	public Map<String, Object> updateMenu(MultipartHttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreMenuRestController.updateMenu 도착");
+		Map<String,Object> map = storeMenuService.updateMenu(request, response);
+
+		return map;
+	}
+	
 	@RequestMapping(value = "admin/menu/delete" , method = RequestMethod.POST)
 	public Map<String, Object> deleteMenu(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("StoreMenuRestController.deleteMenu 도착");

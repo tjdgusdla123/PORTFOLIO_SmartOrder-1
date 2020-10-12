@@ -49,13 +49,31 @@ public class StoreMemuTest {
 //	System.out.println(sqlSession.selectOne("storemenu.detailmenu", menuCode));
 //	}
 	
-	@Test
-	public void getMenuCode() {
-		StoreMenu storeMenu = new StoreMenu();
-		storeMenu.setMenuName("돈까스");
-		storeMenu.setStoreNickname("기훈이네김밥천국닉네임");
+//	@Test
+//	public void getMenuCode() {
+//		StoreMenu storeMenu = new StoreMenu();
+//		storeMenu.setMenuName("돈까스");
+//		storeMenu.setStoreNickname("기훈이네김밥천국닉네임");
+//	
+//		String menuCode = sqlSession.selectOne("storeMenu.getMenuCode", storeMenu);
+//		System.out.println(menuCode);
+//	}
 	
-		String menuCode = sqlSession.selectOne("storeMenu.getMenuCode", storeMenu);
-		System.out.println(menuCode);
+	@Test
+	public void updateMenu() {
+		
+		
+		StoreMenu storeMenu = new StoreMenu();
+		storeMenu.setMenuCode("기훈이네김밥천국닉네임m9");
+		storeMenu.setMenuName("순두부찌개");
+		storeMenu.setMenuInfo("순두부찌개입니다.");
+		storeMenu.setMenuPrice(6000);
+		storeMenu.setMenuSection("menuSectionMain");
+		
+		
+
+		int row = sqlSession.update("storeMenu.updateMenu" , storeMenu);
+		System.out.println(row);
 	}
+	
 }

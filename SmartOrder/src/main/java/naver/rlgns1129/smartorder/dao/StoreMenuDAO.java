@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import naver.rlgns1129.smartorder.domain.StoreMember;
+import naver.rlgns1129.smartorder.domain.StoreMemberBoard;
 import naver.rlgns1129.smartorder.domain.StoreMenu;
 
 @Repository
@@ -48,8 +49,14 @@ public class StoreMenuDAO {
 		return sqlSession.insert("storeMenu.insertMenu", storeMenu);
 	}
 	// 메뉴 수정
-	public void updateMenu(String menuCode) {
-		 sqlSession.update("storeMenu.updateMenu", menuCode);
+	public int updateMenu(StoreMenu storeMenu) {
+		System.out.println("StoreMenuDAO.updateMenu 도착");
+		return sqlSession.update("storeMenu.updateMenu", storeMenu);
+	}
+	// 메뉴 수정(이미지 포함)
+	public int updateMenuIncludeImage(StoreMenu storeMenu) {
+		System.out.println("StoreMenuDAO.updateMenuIncludeImage 도착");
+		return sqlSession.update("storeMenu.updateMenuIncludeImage", storeMenu);
 	}
 	// 메뉴 삭제
 	public int deleteMenu(String menuCode) {

@@ -61,8 +61,9 @@
 						<h1>Smart Order</h1>
 						<span class="subheading">
 							<c:if test="${storememberinfo.storememberverify == '9'}">
-								관리자 ${storememberinfo.storemembernickname}님 반갑습니다.<br /><br />
-								메뉴관리 페이지 입니다.<br />
+								
+								메뉴관리 페이지 입니다.<br /><br />
+								메뉴를 선택하면 수정 및 삭제가 가능합니다.
 							</c:if>
 						</span>
 					</div>
@@ -93,7 +94,7 @@
 					<!-- 관리자 -->
 					<c:if test="${storememberinfo.storememberverify == '9'}">
 						<li class="nav-item"><a class="nav-link" href="/admin/menu/insert">메뉴추가</a></li>
-						<li class="nav-item"><a class="nav-link" href="/admin/menu/update">메뉴수정</a></li>
+						<li class="nav-item"><a class="nav-link" href="/admin">뒤로가기</a></li>	
 						<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
 					</c:if>
 				</ul>
@@ -152,11 +153,11 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									<form method="post" id="boardUpdateForm" enctype="multipart/form-data">
+									<form method="post" id="menuUpdateForm" enctype="multipart/form-data">
 										<div class="control-group" style="display:none">
 											<div class="form-group floating-label-form-group controls">
 												<label>메뉴코드</label> <input type="text" class="form-control"
-													placeholder="글번호" id="MenoCode" name="MenoCode" readonly>
+													placeholder="메뉴 코드" id="menuCode" name="menuCode" readonly>
 												<p class="help-block text-danger"></p>
 											</div>
 										</div>
@@ -216,10 +217,10 @@
 											<label>비밀번호 확인</label>
 											<form method="post" id="updatePasswordcheckform">
 												<input type="password" class="form-control" placeholder="비밀번호를 입력해 주세요."
-													id="boardUpdatePassword" name="memberpassword" required
+													id="menuUpdatePassword" name="memberpassword" required
 													data-validation-required-message="비밀번호를 입력해 주세요.">
 											</form>
-											<p class="help-block text-danger"></p>
+											<p id="updatePasswordCheckmsg" class="help-block text-danger"></p>
 										</div>
 									</div>
 									<br>
@@ -228,7 +229,7 @@
 								<div class="modal-footer">
 
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-									<button id="updateBtn" onclick="boardUpdate()" type="button"
+									<button id="updateBtn" onclick="menuUpdate()" type="button"
 										class="btn btn-primary">수정
 									</button>
 

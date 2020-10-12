@@ -92,26 +92,28 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		
 
 		//기본값이 없는 경우는 null
-		String MenuFile = "";
+		String menuFile = "";
 					
 		//파일이 존재하는 경우에만 
 		if(menuImage != null && menuImage.isEmpty() == false) {
 			//파일을 업로드할 디렉토리 경로를 설정
 			String filePath = request.getServletContext().getRealPath("/storemenu/img");
 			System.out.println("StoreMenuServiceImpl.insertMenu.filePath : " + filePath);
+			String fP = request.getSession().getServletContext().getRealPath("/storemenu/img");
+			System.out.println("StoreMenuServiceImpl.insertMenu.fP : " + fP);
 			
 			
 			
 			try {
 				if(menuImage.getOriginalFilename().length()>0) {
 					//파일이름 생성 - 중복된 파일이름을 업로드 할까봐서 수정
-					MenuFile = UUID.randomUUID() + menuImage.getOriginalFilename();
+					menuFile = UUID.randomUUID() + menuImage.getOriginalFilename();
 					//파일 업로드 하기 (맥과 윈도우의 운영체제에 따라 경로 \와 /차이가 있는데 이것을 File.separator가 해결해 준다. 
-					File f = new File(filePath + File.separator + MenuFile);
+					File f = new File(filePath + File.separator + menuFile);
 					
 					menuImage.transferTo(f);
 				}else {
-					MenuFile = "";
+					menuFile = "";
 				}
 				
 			} catch (Exception e) {
@@ -125,7 +127,7 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		storeMenu.setMenuName(menuName);
 		storeMenu.setMenuInfo(menuInfo);
 		storeMenu.setMenuPrice(Integer.parseInt(menuPrice));
-		storeMenu.setMenuPhoto(MenuFile);
+		storeMenu.setMenuPhoto(menuFile);
 		storeMenu.setMenuSection(menuSection);
 		storeMenu.setStoreNickname(storeNickname);
 		
@@ -138,42 +140,6 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		}
 		
 		return map;
-	}
-
-	@Override
-	public Map<String, Object> updateMenu(MultipartHttpServletRequest request, HttpServletResponse response) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("result", false);
-		
-		String menuName = request.getParameter("menuname");
-		String menuInfo = request.getParameter("menuinfo");
-		String menuPrice = request.getParameter("menuprice");
-		String menuSection = request.getParameter("menusection");
-		MultipartFile menuPhoto = request.getFile("menuphoto");
-		
-		return map;
-	}
-
-	@Override
-	public Map<String, Object> deleteMenu(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("StoreMenuServiceImpl.deleteMenu 도착");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("result", false);
-		
-		String menuCode = request.getParameter("menuCode");
-		System.out.println("StoreMenuServiceImpl.deleteMenu.menuCode : " +  menuCode);
-
-		
-		int row = storeMenuDao.deleteMenu(menuCode);
-		// 저장에 성공하면 map의 result에 true 저장
-		if (row > 0) {
-			System.out.println("StoreMenuServiceImpl.deleteMenu 메뉴 삭제 성공");
-
-			map.put("result", true);
-		}
-		
-		return map;
-
 	}
 
 	@Override
@@ -198,4 +164,124 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 		request.setAttribute("storemenu", storeMenu);
 	}
 
+	@Override
+	public Map<String, Object> updateMenu(MultipartHttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreMenuServiceImpl.insertMenu 도착");
+
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", false);
+		
+		String menuCode = request.getParameter("menuCode");
+		String menuName = request.getParameter("menuName");
+		String menuInfo = request.getParameter("menuInfo");
+		String menuPrice = request.getParameter("menuPrice");
+		String menuSection = request.getParameter("menuSection");
+		MultipartFile menuImage = request.getFile("menuImage");
+		
+		System.out.println("StoreMenuServiceImpl.updateMenu.menuCode 파라미터 : " + menuCode);
+		System.out.println("StoreMenuServiceImpl.updateMenu.menuName 파라미터 : " + menuName);
+		System.out.println("StoreMenuServiceImpl.updateMenu.menuInfo 파라미터 : " + menuInfo);
+		System.out.println("StoreMenuServiceImpl.updateMenu.menuPrice 파라미터 : " + menuPrice);
+		System.out.println("StoreMenuServiceImpl.updateMenu.menuSection 파라미터 : " + menuSection);
+		
+		//기본값이 없는 경우는 null
+				String menuFile = "";
+							
+				//파일이 존재하는 경우에만 
+				if(menuImage != null && menuImage.isEmpty() == false) {
+					//파일을 업로드할 디렉토리 경로를 설정
+					String filePath = request.getServletContext().getRealPath("/storemenu/img");
+					System.out.println("StoreMenuServiceImpl.insertMenu.filePath : " + filePath);
+					
+					
+					
+					try {
+						if(menuImage.getOriginalFilename().length()>0) {
+							//파일이름 생성 - 중복된 파일이름을 업로드 할까봐서 수정
+							menuFile = UUID.randomUUID() + menuImage.getOriginalFilename();
+							//파일 업로드 하기 (맥과 윈도우의 운영체제에 따라 경로 \와 /차이가 있는데 이것을 File.separator가 해결해 준다. 
+							File f = new File(filePath + File.separator + menuFile);
+							
+							menuImage.transferTo(f);
+						}else {
+							menuFile = "";
+						}
+						
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+						e.printStackTrace();
+					} 		
+				}
+				System.out.println("menuFile.length : " + menuFile.length());
+				if(menuFile.length()>0) {
+					StoreMenu storeMenu = new StoreMenu();
+
+					storeMenu.setMenuCode(menuCode);
+					storeMenu.setMenuName(menuName);
+					storeMenu.setMenuInfo(menuInfo);
+					storeMenu.setMenuPrice(Integer.parseInt(menuPrice));
+					storeMenu.setMenuPhoto(menuFile);
+					storeMenu.setMenuSection(menuSection);
+					
+					int row = storeMenuDao.updateMenuIncludeImage(storeMenu);
+					System.out.println("파일이 0보다 크고 row의 값은? : " + row);
+					// 저장에 성공하면 map의 result에 true 저장
+					if (row > 0) {
+						System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate 게시글 저장 성공");
+
+						map.put("result", true);
+					}
+					
+				}else {
+					
+					StoreMenu storeMenu = new StoreMenu();
+					
+					storeMenu.setMenuCode(menuCode);
+					storeMenu.setMenuName(menuName);
+					storeMenu.setMenuInfo(menuInfo);
+					storeMenu.setMenuPrice(Integer.parseInt(menuPrice));
+					storeMenu.setMenuSection(menuSection);
+
+		
+					int row = storeMenuDao.updateMenu(storeMenu);
+					System.out.println("파일이 0보다 작고 row의 값은? : " + row);
+
+					// 저장에 성공하면 map의 result에 true 저장
+					if (row > 0) {
+						System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardUpdate 게시글 저장 성공");
+
+						map.put("result", true);
+					}
+				}
+				
+				return map;
+		
+	}
+	
+	@Override
+	public Map<String, Object> deleteMenu(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreMenuServiceImpl.deleteMenu 도착");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", false);
+		
+		String menuCode = request.getParameter("menuCode");
+		System.out.println("StoreMenuServiceImpl.deleteMenu.menuCode : " +  menuCode);
+
+		
+		int row = storeMenuDao.deleteMenu(menuCode);
+		// 저장에 성공하면 map의 result에 true 저장
+		if (row > 0) {
+			System.out.println("StoreMenuServiceImpl.deleteMenu 메뉴 삭제 성공");
+
+			map.put("result", true);
+		}
+		
+		return map;
+
+	}
+	
+	
+	
+	
 }

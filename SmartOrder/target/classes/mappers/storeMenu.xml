@@ -45,7 +45,12 @@
 	
 	<!-- 메뉴 수정 -->
 	<update id="updateMenu" parameterType="naver.rlgns1129.smartorder.domain.StoreMenu">
-		update storemenutbl set menuname = #{menuName}, menuinfo = #{menuInfo} , menuprice = #{menuPrice}, menuphoto = #{menuPhoto} , menusection = #{menuSection} where menucode = #{menuCode}
+		update storemenutbl set menuName = #{menuName}, menuInfo = #{menuInfo} , menuPrice = #{menuPrice}, menuSection = #{menuSection} where menuCode = #{menuCode}
+	</update>
+	
+	<!-- 메뉴 수정 이미지포함-->
+	<update id="updateMenuIncludeImage" parameterType="naver.rlgns1129.smartorder.domain.StoreMenu">
+		update storemenutbl set menuName = #{menuName}, menuInfo = #{menuInfo} , menuPrice = #{menuPrice}, menuPhoto = #{menuPhoto} , menuSection = #{menuSection} where menuCode = #{menuCode}
 	</update>
 	
 	<!-- 메뉴 삭제 -->

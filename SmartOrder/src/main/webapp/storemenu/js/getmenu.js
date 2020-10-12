@@ -129,6 +129,73 @@ function getmenucode(menucode) {
 	//제이쿼리끝.
 }
 
+
+function menuUpdate() {
+	console.log('menuUpdate 함수를 클릭했습니다.')
+	var updateBtn = document.getElementById('updateBtn')
+	var storeMemberNickname = sessionStorage.getItem('storeMemberNicknameSession')
+	var menuCode = document.getElementById('menuCode')
+	var updatePasswordcheckform = document.getElementById('updatePasswordcheckform')
+	var updatePasswordCheckmsg = document.getElementById('updatePasswordCheckmsg')
+	var menuUpdateForm = document.getElementById('menuUpdateForm')
+
+	
+	
+	updateBtn.addEventListener("click", function (event) {
+
+		var flag = false;
+		if (menuUpdatePassword.value.trim().length < 1) {
+			updatePasswordCheckmsg.innerHTML = '비밀번호는 필수 입력입니다.<br/>';
+			updatePasswordCheckmsg.style.color = "red";
+			flag = true;
+		}else{
+			updatePasswordCheckmsg.innerHTML = '';
+			
+		}
+		if (flag == true) {
+			return;
+		}
+
+		var url = "/user/pwcheck";
+
+		var request = new XMLHttpRequest();
+		request.open("post", url, true);
+		var formdata = new FormData(updatePasswordcheckform);
+		request.send(formdata);
+		request.addEventListener('load', function (e) {
+			var map = JSON.parse(e.target.responseText);
+			if (map.result == true) {
+				console.log('비밀번호 체크 성공')
+					menuCode.value = sharedMenuCode
+					var url = "/admin/menu/update";
+					  var request = new XMLHttpRequest();
+						  
+					  request.open("post", url, true);
+					  var formdata = new FormData(menuUpdateForm);
+					  request.send(formdata);
+					  request.addEventListener('load', function(e){
+					  var map = JSON.parse(e.target.responseText);
+						 if(map.result == true){
+							console.log('메뉴 수정 성공')
+							 location.href = "/admin/menu";
+							 
+						 }else{
+							console.log('메뉴 수정 실패')
+						 }
+					  });
+
+			} else {
+				console.log('비밀번호 체크 실패')
+				msg.innerHTML = "잘못된  비밀번호입니다.";
+			}
+		});
+	});
+
+}
+
+
+
+
 //메뉴 삭제하는 함수
 function menuDelete() {
 	var deleteBtn = document.getElementById('deleteBtn')

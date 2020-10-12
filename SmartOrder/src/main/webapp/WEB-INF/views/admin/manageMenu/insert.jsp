@@ -75,8 +75,6 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/admin">관리자 홈</a></li>
 					<li class="nav-item"><a class="nav-link" href="/admin/menu/insert">메뉴추가</a></li>
-						<li class="nav-item"><a class="nav-link" href="/admin/menu/update">메뉴수정</a></li>
-						<li class="nav-item"><a class="nav-link" href="/admin/menu/delete">메뉴삭제</a></li>
 						<li class="nav-item"><a class="nav-link" href="/admin/menu">뒤로가기</a></li>					
 						<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
 						
