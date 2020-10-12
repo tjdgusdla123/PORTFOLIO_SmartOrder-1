@@ -99,8 +99,6 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 			//파일을 업로드할 디렉토리 경로를 설정
 			String filePath = request.getServletContext().getRealPath("/storemenu/img");
 			System.out.println("StoreMenuServiceImpl.insertMenu.filePath : " + filePath);
-			String fP = request.getSession().getServletContext().getRealPath("/storemenu/img");
-			System.out.println("StoreMenuServiceImpl.insertMenu.fP : " + fP);
 			
 			
 			

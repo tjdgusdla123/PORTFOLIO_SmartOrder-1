@@ -16,8 +16,11 @@ public class AdminPageController {
 		@RequestMapping(value ="admin/board", method = RequestMethod.GET)
 		public String adminBoard() {
 			System.out.println("AdminPageController.adminBoard 도착"); 
-			return "admin/manageBoard";
+			return "board/main";
 		}
+		
+		
+		
 		//관리자 메뉴페이지 이동
 		@RequestMapping(value ="admin/menu", method = RequestMethod.GET)
 		public String adminMenu() {

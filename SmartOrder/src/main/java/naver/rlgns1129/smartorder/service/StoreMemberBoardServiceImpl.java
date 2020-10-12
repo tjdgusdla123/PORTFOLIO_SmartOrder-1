@@ -321,6 +321,8 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 		StoreMemberBoard storeMemberBoardDetail = storeMemberBoardDao.storeMemberBoardDetail(boardNo);
 		Map<String, Object> storeMemberInfo = (Map<String, Object>)request.getSession().getAttribute("storememberinfo");
 		String storeMemberNickname = (String)storeMemberInfo.get("storemembernickname");
+		String storememberverify = (String)storeMemberInfo.get("storememberverify");
+		
 		
 		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDelete.storeMemberNickname 파라미터 : " + storeMemberNickname);
 		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardDelete.storeMemberBoardDetail.getMemberNickname() : " + storeMemberBoardDetail.getMemberNickname());
@@ -332,7 +334,10 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 			resultMap.put("result", true);
 		}
 					
-			
+		if(storememberverify.equals("9")) {
+			storeMemberBoardDao.storeMemberBoardDelete(boardNo);
+			resultMap.put("result", true);
+		}
 		
 		return resultMap;
 		
