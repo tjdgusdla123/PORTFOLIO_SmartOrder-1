@@ -3,33 +3,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-<title>게시판 글쓰기</title>
-<!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>게시판 글쓰기</title>
+	<!-- Bootstrap core CSS -->
+	<link href="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet">
 
-<!-- Custom fonts for this template -->
-<link
-	href="${pageContext.request.contextPath}/bootstrapfile/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
+	<!-- Custom fonts for this template -->
+	<link href="${pageContext.request.contextPath}/bootstrapfile/vendor/fontawesome-free/css/all.min.css"
+		rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+		type='text/css'>
+	<link
+		href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+		rel='stylesheet' type='text/css'>
 
-<!-- Custom styles for this template -->
-<link
-	href="${pageContext.request.contextPath}/bootstrapfile/css/clean-blog.min.css"
-	rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="${pageContext.request.contextPath}/bootstrapfile/css/clean-blog.min.css" rel="stylesheet">
 </head>
+
 <body>
 
 	<!-- header -->
@@ -49,28 +46,25 @@
 	</header>
 
 	<!-- navi -->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
-		id="mainNav">
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container">
 			<a class="navbar-brand" href="/board/write">스마트오더</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
 				aria-label="Toggle navigation">
 				Menu <i class="fas fa-bars"></i>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/">홈</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/smartorder/about">스마트오더</a></li>
+					<li class="nav-item"><a class="nav-link" href="/smartorder/about">스마트오더</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
 					</li>
 					<c:if test="${storememberinfo.result == null}">
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+								href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/user/register">회원가입</a></li>
+								href="${pageContext.request.contextPath}/user/register">회원가입</a></li>
 
 					</c:if>
 					<c:if test="${storememberinfo.result == true}">
@@ -79,13 +73,7 @@
 						<c:if test="${member.verify == 9}">
 							<li><a href="/admin/index">관리자 화면</a></li>
 						</c:if>
-						<li class="nav-item"><a class="nav-link"
-							href="/board/write">글쓰기</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/shop/orderList">글수정</a></li>
-
-						<li class="nav-item"><a class="nav-link" href="/user/update">글삭제</a>
-						</li>
+						<li class="nav-item"><a class="nav-link" href="/board/write">글쓰기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
 						</li>
 					</c:if>
@@ -96,56 +84,55 @@
 	</nav>
 
 	<!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <form method="post" id="boardWriteForm" enctype="multipart/form-data">
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>제목</label>
-              <input type="text" class="form-control" placeholder="제목" id="boardTitle" name="boardTitle" required data-validation-required-message="제목을 작성해 주세요.">
-              <p id= "boardTitleMsg" class="help-block text-danger"></p>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>내용</label>
-              <textarea rows="10" class="form-control" placeholder="글을 작성해 주세요." id="boardContent" name="boardContent" required data-validation-required-message="내용을 작성해주세요."></textarea>
-              <p id= "boardContentMsg" class="help-block text-danger"></p>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>이미지</label>
-              <input type="file" class="form-control"  id="boardFile" name="boardFile" accept="image/*">
-              <p class="help-block text-danger"></p>
-              <div style="color: red" >메뉴 사진파일 이름은 영문또는 숫자로 작성해주세요.</div>	
-              
-            </div>
-          </div>
-          <br>
-          <div id="success"></div>
-          <button type="button" class="btn btn-primary" id="boardWriteBtn">Send</button>
-        </form>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<form method="post" id="boardWriteForm" enctype="multipart/form-data">
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>제목</label>
+							<input type="text" class="form-control" placeholder="제목" id="boardTitle" name="boardTitle"
+								required data-validation-required-message="제목을 작성해 주세요.">
+							<p id="boardTitleMsg" class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>내용</label>
+							<textarea rows="10" class="form-control" placeholder="글을 작성해 주세요." id="boardContent"
+								name="boardContent" required data-validation-required-message="내용을 작성해주세요."></textarea>
+							<p id="boardContentMsg" class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>이미지</label>
+							<input type="file" class="form-control" id="boardFile" name="boardFile" accept="image/*">
+							<p class="help-block text-danger"></p>
+							<div style="color: red">메뉴 사진파일 이름은 영문또는 숫자로 작성해주세요.</div>
+
+						</div>
+					</div>
+					<br>
+					<div id="success"></div>
+					<button type="button" class="btn btn-primary" id="boardWriteBtn">Send</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
 	<hr>
 	<!-- footer -->
 	<%@ include file="../include/footer.jsp"%>
-	
-</body>
-	<!-- Bootstrap core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/bootstrapfile/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Custom scripts for this template -->
-	<script
-		src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/board/js/write.js"></script>	
-	<script src="${pageContext.request.contextPath}/common/js/common.js"></script>	
+</body>
+<!-- Bootstrap core JavaScript -->
+<script src="${pageContext.request.contextPath}/bootstrapfile/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
+<script src="${pageContext.request.contextPath}/board/js/write.js"></script>
+<script src="${pageContext.request.contextPath}/common/js/common.js"></script>
+
 </html>

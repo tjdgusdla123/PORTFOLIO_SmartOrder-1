@@ -18,9 +18,6 @@ public class AdminPageController {
 			System.out.println("AdminPageController.adminBoard 도착"); 
 			return "board/main";
 		}
-		
-		
-		
 		//관리자 메뉴페이지 이동
 		@RequestMapping(value ="admin/menu", method = RequestMethod.GET)
 		public String adminMenu() {
@@ -40,4 +37,21 @@ public class AdminPageController {
 			System.out.println("AdminPageController.adminInfo 도착"); 
 			return "admin/manageAdminInfo";
 		}
+		
+		//관리자 정보수정페이지 이동
+		@RequestMapping(value ="admin/info/update", method = RequestMethod.GET)
+		public String adminInfoUpdate() {
+			System.out.println("AdminPageController.adminInfoUpdate 도착"); 
+			return "member/pwcheck";
+		}		
+		
+		//관리자 회원탈퇴페이지 이동
+		@RequestMapping(value ="admin/info/delete", method = RequestMethod.GET)
+		public String adminInfoDelete() {
+			System.out.println("AdminPageController.adminInfoDelete 도착"); 
+			return "member/secession";
+		}		
+		
+		
+	
 }

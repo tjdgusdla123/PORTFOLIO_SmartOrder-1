@@ -28,18 +28,19 @@ var msg = document.getElementById("msg");
 			msg.style.color = "red";
 			flag = true;
 		} else {
-			var pwRegExp = /^.*(?=^.{1,15}$)(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&+=]).*$/;
-			if (!pwRegExp.test(memberpassword.value.trim())) {
-					msg.innerHTML += '비밀번호는 숫자와 영문 소문자 그리고 특수문자가 포함되어야 합니다.<br/>';
-					msg.style.color = "red";
-					flag = true;
-			} else {
+			//var pwRegExp = /^.*(?=^.{1,15}$)(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&+=]).*$/;
+			//if (!pwRegExp.test(memberpassword.value.trim())) {
+			//		msg.innerHTML += '비밀번호는 숫자와 영문 소문자 그리고 특수문자가 포함되어야 합니다.<br/>';
+			//		msg.style.color = "red";
+			//		flag = true;
+			//} 
+			
 				if (memberpassword.value.trim() !== memberpasswordcheck.value.trim()) {
 					msg.innerHTML += '2개의 비밀번호는 같아야 합니다.<br/>';
 					msg.style.color = "red";
 					flag = true;
 				}
-			}
+			
 		}
 		if (membernickname.value.trim().length < 1) {
 			msg.innerHTML += '닉네임은 필수 입력입니다.<br/>';
@@ -59,7 +60,7 @@ var msg = document.getElementById("msg");
 			event.preventDefault();
 			return;
 		}
-		var url = "update";
+		var url = "/user/update";
 	  	var request = new XMLHttpRequest();
 		  	
 		  request.open("post", url, true);
@@ -69,7 +70,7 @@ var msg = document.getElementById("msg");
 		  var map = JSON.parse(e.target.responseText);
 			 if(map.result == true){
 				alert("회원정보가 수정되었습니다.");
-			 	location.href = "../";
+			 	location.href = "/user/main";
 			 }else{
 			 	if(map.memberemailcheck == false){
 			 		alert("사용 불 가능한 이메일입니다.");

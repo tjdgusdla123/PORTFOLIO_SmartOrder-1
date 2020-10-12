@@ -15,7 +15,7 @@ pwcheckbtn.addEventListener("click", function (event) {
 		return;
 	}
 
-	var url = "secession";
+	var url = "/user/secession";
 
 	var request = new XMLHttpRequest();
 	request.open("post", url, true);
@@ -36,7 +36,7 @@ pwcheckbtn.addEventListener("click", function (event) {
 			console.log('rText 진입')
 
 			alert('회원탈퇴에 성공했습니다')
-			location.href = "../user/main";
+			location.href = "/user/main";
 		} else {
 			console.log('rText else 구문 진입')
 			alert('회원탈퇴에 실패했습니다.')

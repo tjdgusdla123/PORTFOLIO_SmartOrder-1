@@ -15,7 +15,7 @@ pwcheckbtn.addEventListener("click", function (event) {
 		return;
 	}
 
-	var url = "pwcheck";
+	var url = "/user/pwcheck";
 
 	var request = new XMLHttpRequest();
 	request.open("post", url, true);
@@ -25,7 +25,7 @@ pwcheckbtn.addEventListener("click", function (event) {
 		var map = JSON.parse(e.target.responseText);
 		if (map.result == true) {
 			alert('pwcheck에 성공했습니다')
-			location.href = "../user/updateform";
+			location.href = "/user/updateform";
 		} else {
 			alert('pwcheck에 실패했습니다.')
 			msg.innerHTML = "잘못된  비밀번호입니다.";
