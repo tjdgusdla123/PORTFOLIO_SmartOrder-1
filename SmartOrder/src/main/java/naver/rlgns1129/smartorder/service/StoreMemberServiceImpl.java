@@ -131,7 +131,10 @@ public class StoreMemberServiceImpl implements StoreMemberService {
 					result.put("storemembernickname", memberNickname);
 					result.put("storememberemail", storeMember.getMemberEmail());
 					result.put("storememberphonenumber", storeMember.getMemberPhoneNumber());
-					
+					result.put("storememberverify", storeMember.getMemberverify());
+					result.put("storenickname", storeMember.getStoreNickname());
+
+					System.out.println("storeMember.getMemberverify : " + storeMember.getMemberverify());
 				
 			}
 		}catch (Exception e) {

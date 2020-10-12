@@ -14,6 +14,8 @@
 	<div class="inner_login">
 		<div class="login_myweb">
 			<div id="msg" class="msg"></div>
+			<div class="inp_text"> 관리자로 로그인하기 ID : admin / Password : 1234 <br/>회원으로 로그인하기 ID : member / Password : 1234</div>
+			<div class="inp_text"></div>
 			<form method="post" id="loginform" >
 				<fieldset>
 					<legend class="screen_out">로그인 정보 입력폼</legend>

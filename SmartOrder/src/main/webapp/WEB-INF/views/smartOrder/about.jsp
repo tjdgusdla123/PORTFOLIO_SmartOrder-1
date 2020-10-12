@@ -53,7 +53,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">스마트오더</a>
+			<a class="navbar-brand" href="/">About</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -64,9 +64,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/">홈</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="kihooninfomation">스마트오더</a></li>
-					<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
-					</li>
+						href="/smartorder/about">스마트오더</a></li>
 					<c:if test="${storememberinfo.result == null}">
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/user/login">로그인</a></li>
@@ -74,16 +72,13 @@
 							href="${pageContext.request.contextPath}/user/register">회원가입</a></li>
 
 					</c:if>
-					<c:if test="${storememberinfo.result == true}">
+					<c:if test="${storememberinfo.result == true} and ${storememberinfo.storememberverify != '9'}">
 
-						<!-- member.verify  이부분은 아직 미완성 -->
-						<c:if test="${member.verify == 9}">
-							<li><a href="/admin/index">관리자 화면</a></li>
-						</c:if>
+						
+						<!-- <li class="nav-item"><a class="nav-link"
+							href="#">카트</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/shop/cartList">카트</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/shop/orderList">주문내역</a></li>
+							href="/#">주문내역</a></li> -->
 
 						<li class="nav-item"><a class="nav-link" href="/user/update">회원정보수정</a>
 						</li>
@@ -91,7 +86,13 @@
 							href="/user/secession">회원탈퇴</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
 						</li>
-					</c:if>
+					</c:if>	
+						<!-- 관리자 -->
+						<c:if test="${storememberinfo.storememberverify == '9'}">
+							<li class="nav-item"><a class="nav-link" href="/admin">관리자</a></li>
+							<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
+						</c:if>
+					
 
 				</ul>
 			</div>

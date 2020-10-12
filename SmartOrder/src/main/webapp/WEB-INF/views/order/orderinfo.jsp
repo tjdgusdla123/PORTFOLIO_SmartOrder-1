@@ -81,26 +81,26 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/">홈</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="kihooninfomation">스마트오더</a></li>
-					<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
-					</li>
+						href="/smartorder/about">스마트오더</a></li>	
+						
 					<c:if test="${storememberinfo.result == null}">
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/board/list">게시판</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/user/register">회원가입</a></li>
 
 					</c:if>
-					<c:if test="${storememberinfo.result == true}">
-
-						<!-- member.verify  이부분은 아직 미완성 -->
-						<c:if test="${member.verify == 9}">
-							<li><a href="/admin/index">관리자 화면</a></li>
-						</c:if>
+					
+					<c:if test="${storememberinfo.storememberverify == '0'}">
 						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/board/list">게시판</a></li>
+						
+						<!-- <li class="nav-item"><a class="nav-link"
 							href="#">카트</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/#">주문내역</a></li>
+							href="/#">주문내역</a></li> -->
 
 						<li class="nav-item"><a class="nav-link" href="/user/update">회원정보수정</a>
 						</li>
@@ -108,7 +108,13 @@
 							href="/user/secession">회원탈퇴</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
 						</li>
-					</c:if>
+					</c:if>	
+						<!-- 관리자 -->
+						<c:if test="${storememberinfo.storememberverify == '9'}">
+							<li class="nav-item"><a class="nav-link" href="/admin">관리자</a></li>
+							<li class="nav-item"><a class="nav-link" href="/user/signout">로그아웃</a>
+						</c:if>
+					
 
 				</ul>
 			</div>

@@ -36,6 +36,7 @@ public class StoreMemberDAO {
 	
 	//로그인
 	public StoreMember login(String memberNickname) {
+		System.out.println("StoreMemberDAO.login 진입");
 		return sqlSession.selectOne("storemember.storememberlogin" , memberNickname);
 	}
 	

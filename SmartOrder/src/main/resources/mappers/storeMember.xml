@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD: XML로 작성한 내용을 해석하는 위치를 설정 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="storemember">
+	<!-- goods 테이블의 전체 데이터를 가져오는 SQL id는 구별하기 위한 이름
+	parameterType은 where절에 대입할 파라미터 자료형
+	resultType은 select 절의 내용을 전부 저장할 수 있는 자료형 -->
+	
+	<!-- 파라미터 없이 전체 데이터를 읽어오는 SQL : 전체보기 -->
+	<select id="allstoremember" resultType="naver.rlgns1129.smartorder.domain.StoreMember">
+		select membernickname, memberemail, memberphonenumber from storemembertbl
+	</select>
+	
+	<!-- code를 가지고 하나의 데이터를 읽어오는 SQL : 상세보기 -->
+	<select id="getstoremember" parameterType="java.lang.String" resultType="naver.rlgns1129.smartorder.domain.StoreMember">
+		select membernickname , memberphonenumber from storemembertbl where membernickname = #{memberNickname}
+	</select>
+	
+	<!-- oracle - nickname에 포함된 데이터를 검색하는 SQL -->
+	 <select id="searchnickname" parameterType="java.lang.String" resultType="naver.rlgns1129.smartorder.domain.StoreMember">
+		membernickname , memberphonenumber from storemembertbl where membernickname like '%' || #{memberNickname} || '%'
+	</select> 
+	
+	<!-- mysql - nickname에 포함된 데이터를 검색하는 SQL -->
+	<!--  <select id="searchnickname" parameterType="java.lang.String" resultType="naver.rlgns1129.smartorder.domain.StoreMember">
+		membernickname , memberphonenumber from storemembertbl where nickname like concat('%' , #{memberNickname} , '%')
+	</select> -->
+
+	<!-- 데이터를 삽입하는 SQL -->
+	<insert id="insertstoremember" parameterType="naver.rlgns1129.smartorder.domain.StoreMember">
+		insert into storemembertbl(membernickname, memberemail, memberpassword, memberphonenumber) values(#{memberNickname},#{memberEmail},#{memberPassword},#{memberPhoneNumber})
+	</insert>
+	
+	<!-- 데이터를 수정하는 SQL -->
+	<!-- 기본키(code)를 가지고 데이터를 가져와서 나머지 컬럼의 값을 수정 -->
+	<update id="updatestoremember" parameterType="naver.rlgns1129.smartorder.domain.StoreMember">
+		update storemembertbl
+		set membernickname = #{memberNickname} , memberphonenumber = #{memberPhoneNumber} ,memberpassword = #{memberPassword}
+		where memberemail = #{memberEmail}
+	</update>
+	
+	<!-- 데이터를 삭제하는 SQL -->
+	<delete id="deletestoremember" parameterType="java.lang.String">
+		delete from storemembertbl where membernickname = #{memberNickname}
+	</delete>
+	
+	<!-- emailcheck 중복검사 -->
+	<select id="storememberemailcheck" parameterType="java.lang.String" resultType="java.lang.String">
+	select memberemail from storemembertbl where memberemail = #{memberEmail}
+	</select>
+	
+	<!-- nicknamecheck 중복검사 -->
+	<select id="storemembernicknamecheck" parameterType="java.lang.String" resultType="java.lang.String">
+	select membernickname from storemembertbl where membernickname = #{memberNickname}
+	</select>
+	
+	<!-- phonenumber 중복검사 -->
+	<select id="storememberphonenumbercheck" parameterType="java.lang.String" resultType="java.lang.String">
+	select memberphonenumber from storemembertbl where memberphonenumber = #{memberPhoneNumber}
+	</select>
+	
+	<!-- login -->
+	<select id="storememberlogin" parameterType="java.lang.String" resultType="naver.rlgns1129.smartorder.domain.StoreMember">
+	select memberemail, membernickname, memberpassword, memberphonenumber, memberverify, storenickname  from storemembertbl where membernickname = #{memberNickname}
+	</select>
+</mapper>

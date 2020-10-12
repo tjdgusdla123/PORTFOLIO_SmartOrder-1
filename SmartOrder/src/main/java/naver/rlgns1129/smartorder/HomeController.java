@@ -12,9 +12,9 @@ public class HomeController {
 		return "order/orderinfo";
 	}
 	
-	@RequestMapping(value = "kihooninfomation", method = RequestMethod.GET)
-	public String kihooninfomation() {
-		return "myinfomation/about";
+	@RequestMapping(value = "smartorder/about", method = RequestMethod.GET)
+	public String smartOrderAbout() {
+		return "smartOrder/about";
 	}
 	
 }

@@ -12,6 +12,8 @@ public class StoreMember {
 	private String memberIsLogin;
 	private Date memberLastLoginDate;
 	private String memberIsRemove;
+	private String memberverify;
+	private String storeNickname;
 
 	
 }

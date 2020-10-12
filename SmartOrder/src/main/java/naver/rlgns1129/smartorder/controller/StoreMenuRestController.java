@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import naver.rlgns1129.smartorder.domain.StoreMenu;
 import naver.rlgns1129.smartorder.service.StoreMenuService;
@@ -21,7 +22,7 @@ public class StoreMenuRestController {
 	@Autowired
 	private StoreMenuService storeMenuService;
 	
-	@RequestMapping(value = {"/orderinfo/mainmenu" , "/orderinfo/alcohol", "/orderinfo/drink"} , method = RequestMethod.GET)
+	@RequestMapping(value = {"orderinfo/mainmenu" , "orderinfo/alcohol", "orderinfo/drink"} , method = RequestMethod.GET)
 	public Map<String, Object> mainmenu(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("Controller 도착");
 		storeMenuService.getMenu(request, response);
@@ -33,7 +34,7 @@ public class StoreMenuRestController {
 		
 		return map;
 	}
-	
+		
 	@RequestMapping(value = "/orderinfo/detail" , method = RequestMethod.GET)
 	public Map<String, Object> detailmenu(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("StoreMenuRestController.detailmenu 도착");
@@ -44,5 +45,11 @@ public class StoreMenuRestController {
 		return map;
 	}
 	
-	
+	@RequestMapping(value = "admin/menu/insert" , method = RequestMethod.POST)
+	public Map<String, Object> insertMenu(MultipartHttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreMenuRestController.insertMenu 도착");
+		Map<String,Object> map = storeMenuService.insertMenu(request, response);
+
+		return map;
+	}
 }

@@ -15,7 +15,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/">홈</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="kihooninfomation">스마트오더</a>
+				<li class="nav-item"><a class="nav-link" href="/smartorder/about">스마트오더</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
 					</li>	

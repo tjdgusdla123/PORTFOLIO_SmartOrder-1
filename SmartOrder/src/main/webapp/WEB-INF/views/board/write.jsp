@@ -52,7 +52,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/">스마트오더</a>
+			<a class="navbar-brand" href="/board/write">스마트오더</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -63,7 +63,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/">홈</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/kihooninfomation">스마트오더</a></li>
+						href="/smartorder/about">스마트오더</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
 					</li>
 					<c:if test="${storememberinfo.result == null}">
@@ -119,6 +119,8 @@
               <label>이미지</label>
               <input type="file" class="form-control"  id="boardFile" name="boardFile" accept="image/*">
               <p class="help-block text-danger"></p>
+              <div style="color: red" >메뉴 사진파일 이름은 영문또는 숫자로 작성해주세요.</div>	
+              
             </div>
           </div>
           <br>

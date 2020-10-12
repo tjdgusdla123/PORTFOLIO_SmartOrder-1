@@ -49,4 +49,13 @@ public class StoreMemuTest {
 //	System.out.println(sqlSession.selectOne("storemenu.detailmenu", menuCode));
 //	}
 	
+	@Test
+	public void getMenuCode() {
+		StoreMenu storeMenu = new StoreMenu();
+		storeMenu.setMenuName("돈까스");
+		storeMenu.setStoreNickname("기훈이네김밥천국닉네임");
+	
+		String menuCode = sqlSession.selectOne("storeMenu.getMenuCode", storeMenu);
+		System.out.println(menuCode);
+	}
 }
