@@ -52,4 +52,12 @@ public class StoreMenuRestController {
 
 		return map;
 	}
+	
+	@RequestMapping(value = "admin/menu/delete" , method = RequestMethod.POST)
+	public Map<String, Object> deleteMenu(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreMenuRestController.deleteMenu 도착");
+		Map<String,Object> map = storeMenuService.deleteMenu(request, response);
+
+		return map;
+	}
 }

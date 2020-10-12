@@ -11,13 +11,6 @@
 <meta name="author" content="">
 <title>주문 정보</title>
 
-<!-- 테이블 css -->
-<style>
-.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
-	{
-	background-color: #ffc107;
-}
-</style>
 
 <!-- jquery -->
 <script

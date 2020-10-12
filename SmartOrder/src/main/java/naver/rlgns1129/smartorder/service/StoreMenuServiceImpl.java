@@ -156,20 +156,21 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 
 	@Override
 	public Map<String, Object> deleteMenu(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreMenuServiceImpl.deleteMenu 도착");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", false);
 		
-		String menuName = request.getParameter("menuname");
-		String storeNickname = request.getParameter("storenickname");
+		String menuCode = request.getParameter("menuCode");
+		System.out.println("StoreMenuServiceImpl.deleteMenu.menuCode : " +  menuCode);
 
-		StoreMenu storeMenu = new StoreMenu();
-		storeMenu.setMenuName(menuName);
-		storeMenu.setStoreNickname(storeNickname);
+		
+		int row = storeMenuDao.deleteMenu(menuCode);
+		// 저장에 성공하면 map의 result에 true 저장
+		if (row > 0) {
+			System.out.println("StoreMenuServiceImpl.deleteMenu 메뉴 삭제 성공");
 
-		StoreMenu menuCheckMenuCode = storeMenuDao.menuCheck(storeMenu);
-		String menuCode = menuCheckMenuCode.getMenuCode();
-
-		storeMenuDao.deleteMenu(menuCode);
+			map.put("result", true);
+		}
 		
 		return map;
 

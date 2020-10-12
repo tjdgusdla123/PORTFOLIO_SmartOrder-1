@@ -8,9 +8,14 @@ var menudiv = document.getElementById("menudiv");
 var menubtn = document.getElementById("menubtn");
 var dialog = document.getElementById("dialog");
 
+window.addEventListener("load", function () {
+	var sharedMenuCode = "";
+})
+
+
 //원하는 조건에 맞는 메뉴를 가지고 오는 함수
 function getmenu(where, menusection, storenickname) {
-
+	
 	var url = "/orderinfo/" + where + "?menusection=" + menusection + "&storenickname=" + storenickname
 
 	var request = new XMLHttpRequest();
@@ -35,7 +40,8 @@ function getmenu(where, menusection, storenickname) {
 
 		for (var i = 0; i < list.list.length; i++) {
 			var imsi = list.list[i];
-
+			
+			
 			msg += "<tr>" +
 				"<td  width='80'>" + "<input type='button' data-toggle='modal' data-target='#menuModal' id = 'menubtn'" +
 				"onclick='getmenucode(" + '"' + imsi.menuCode + '"' + ")'" + "value= '" + imsi.menuName + "'/>" + "</td>" +
@@ -77,7 +83,7 @@ function getmenucode(menucode) {
 
 		var list = JSON.parse(map);
 
-
+		sharedMenuCode = list['storemenu'].menuCode
 		//이것이 정답!!!!
 		console.log(list['storemenu'].menuPhoto);
 
@@ -94,13 +100,88 @@ function getmenucode(menucode) {
 
 
 		menudiv.innerHTML = msg;
+		
+		var updateModal = document.getElementById('updateModal')
+		var deleteModal = document.getElementById('deleteModal')
+		
+		if(sessionStorage.getItem('verifySession') == '9'){
+			console.log('세션 일치')
+			
+			var storeNickname = sessionStorage.getItem('storenickname')			
+			
+			var menuUpdateModalDiv = '<div id=menuModalUpdateDiv><button type="button" id="menuUpdateBtn" data-dismiss="modal" data-toggle="modal" href="#menuUpdateModal" onclick="menuUpdateBtn(menucode)" class="btn btn-primary">메뉴수정</button></div>'
+			var menuDeleteModalDiv = '<div id=menuModalDeleteDiv><a data-dismiss="modal" data-toggle="modal" href="#menuDeleteModal" class="btn btn-primary">메뉴삭제</a></div>'
+			
+			updateModal.innerHTML = menuUpdateModalDiv
+			deleteModal.innerHTML = menuDeleteModalDiv
 
+		}else{
+			console.log('세션 불일치')
+			
+			updateModal.innerHTML = ""
+			deleteModal.innerHTML = ""
+		}
+		
 	}
 	//부트 스트랩 적용 전 제이쿼리를 이용하여 모달창 띄울때 위치
 	//제이쿼리 시작
 
 	//제이쿼리끝.
 }
+
+//메뉴 삭제하는 함수
+function menuDelete() {
+	var deleteBtn = document.getElementById('deleteBtn')
+	var memberpassword = document.getElementById('memberpassword')
+	var pwcheckmsg = document.getElementById('pwcheckmsg')
+	var pwcheckform = document.getElementById('passwordcheckform')
+
+	deleteBtn.addEventListener("click", function (event) {
+
+		var flag = false;
+		if (memberpassword.value.trim().length < 1) {
+			pwcheckmsg.innerHTML = '비밀번호는 필수 입력입니다.<br/>';
+			pwcheckmsg.style.color = "red";
+			flag = true;
+		}
+		if (flag == true) {
+			return;
+		}
+
+		var url = "/user/pwcheck";
+
+		var request = new XMLHttpRequest();
+		request.open("post", url, true);
+		var formdata = new FormData(pwcheckform);
+		request.send(formdata);
+		request.addEventListener('load', function (e) {
+			var map = JSON.parse(e.target.responseText);
+			if (map.result == true) {
+				console.log('비밀번호 체크 성공')
+
+				$.ajax({ url :'/admin/menu/delete',
+						 type : 'post', 
+						 
+						 data : { 'menuCode' : sharedMenuCode }, 
+						 success: function(e){ 
+							
+							if (e.result == true) {
+								console.log('메뉴 삭제 성공')
+								location.href = "/admin/menu";
+							} else {
+								console.log('메뉴 삭제 실패')
+							}
+							 } 
+						});
+
+			} else {
+				console.log('비밀번호 체크 실패')
+				msg.innerHTML = "잘못된  비밀번호입니다.";
+			}
+		});
+	});
+}
+
 
 //getmainmenu 버튼을 눌렀을때 성현식당에 있는 메인메뉴섹션 불러오기
 getmainmenu.addEventListener("click", function (event) {

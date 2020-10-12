@@ -52,8 +52,8 @@ public class StoreMenuDAO {
 		 sqlSession.update("storeMenu.updateMenu", menuCode);
 	}
 	// 메뉴 삭제
-	public void deleteMenu(String menuCode) {
-		sqlSession.delete("storeMenu.deleteMenu", menuCode);
+	public int deleteMenu(String menuCode) {
+		return sqlSession.delete("storeMenu.deleteMenu", menuCode);
 	}
 	
 	

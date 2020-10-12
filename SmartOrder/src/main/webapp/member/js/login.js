@@ -33,6 +33,9 @@ loginbtn.addEventListener("click", function (event) {
 		if (map.result == true) {
 			alert('로그인에 성공했습니다')
 			sessionStorage.setItem("storeMemberNicknameSession", map.storemembernickname);
+			sessionStorage.setItem("verifySession", map.storememberverify);
+			sessionStorage.setItem("storenickname", map.storenickname);
+			
 			console.log(map)
 			if(map.storememberverify == '9'){
 				location.href = "/admin";	

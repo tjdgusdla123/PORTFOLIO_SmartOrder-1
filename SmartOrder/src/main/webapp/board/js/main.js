@@ -128,7 +128,7 @@ function boardDetail(boardNo) {
 }
 
 
-//버튼을 누르면 메뉴코드를 가지고 메뉴상세정보 조회하는 함수
+//메뉴 삭제 함수
 function boardDelete() {
 
 	var deleteBtn = document.getElementById('deleteBtn')
@@ -217,6 +217,7 @@ function boardUpdateBtn() {
 	
 }
 
+//게시글 업데이트 함수
 function boardUpdate() {
 	console.log('boardUpdate 함수를 클릭했습니다.')
 	var updateBtn = document.getElementById('updateBtn')

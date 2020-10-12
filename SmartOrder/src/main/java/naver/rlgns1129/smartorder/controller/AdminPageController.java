@@ -30,18 +30,7 @@ public class AdminPageController {
 			System.out.println("AdminPageController.adminMenuInsert 도착"); 
 			return "admin/manageMenu/insert";
 		}
-		//관리자 메뉴 수정페이지 이동
-		@RequestMapping(value ="admin/menu/update", method = RequestMethod.GET)
-		public String adminMenuUpdate() {
-			System.out.println("AdminPageController.adminMenuUpdate 도착"); 
-			return "admin/manageMenu/update";
-		}
-		//관리자 메뉴 삭제페이지 이동
-		@RequestMapping(value ="admin/menu/delete", method = RequestMethod.GET)
-		public String adminMenuDelete() {
-			System.out.println("AdminPageController.adminMenuDelete 도착"); 
-			return "admin/manageMenu/delete";
-		}
+		
 		//관리자 정보관리페이지 이동
 		@RequestMapping(value ="admin/info", method = RequestMethod.GET)
 		public String adminInfo() {
