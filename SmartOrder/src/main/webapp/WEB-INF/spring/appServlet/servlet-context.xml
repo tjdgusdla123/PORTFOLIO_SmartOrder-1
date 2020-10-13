@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -10,49 +11,62 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
-	
-	<!-- Spring MVC Project에서 50여가지의 설정을 대신해주는 태그
-	Spring MVC 의 어노테이션을 사용할 수 있도록 해주는 태그 -->
+
+	<!-- Spring MVC Project에서 50여가지의 설정을 대신해주는 태그 Spring MVC 의 어노테이션을 사용할 수 
+		있도록 해주는 태그 -->
 	<annotation-driven />
 
 	<!-- Controller가 처리하지 못하는 URL은 WAS가 처리하도록 하는 설정 -->
-	<default-servlet-handler/>
-	
-	<!-- 변화가 거의 없는 파일들을 저장해 두면 캐싱을 해서 이용할 수 있도록 해주는 설정
-	기본은 root(webapp, WebContent) 디렉토리의 resources 
-	캐싱 시간을 설정하는 것도 가능 -->
+	<default-servlet-handler />
+
+	<!-- 변화가 거의 없는 파일들을 저장해 두면 캐싱을 해서 이용할 수 있도록 해주는 설정 기본은 root(webapp, WebContent) 
+		디렉토리의 resources 캐싱 시간을 설정하는 것도 가능 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Controller 에서 jsp로 포워딩하고자 할 때 사용하는 뷰 리졸버  : 존재하는 코드라서 order만 추가-->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Controller 에서 jsp로 포워딩하고자 할 때 사용하는 뷰 리졸버 : 존재하는 코드라서 order만 추가 -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="1" />
 	</beans:bean>
-	
+
 	<!-- jsp를 제외한 출력을 위한 설정 : 없으니깐 추가 -->
-	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<beans:bean
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" />
 	</beans:bean>
-	
-	<!-- bean을 자동 생성해주는 root 패키지 설정
-	클래스를 만들 때는 이 패키지 안에 만드는 것을 권장
-	다른 패키지를 만들었다면 다른 패키지도 추가해주면 됩니다. -->
-	<context:component-scan base-package="naver.rlgns1129.smartorder" />
-	
+
+	<!-- bean을 자동 생성해주는 root 패키지 설정 클래스를 만들 때는 이 패키지 안에 만드는 것을 권장 다른 패키지를 만들었다면 
+		다른 패키지도 추가해주면 됩니다. -->
+	<context:component-scan
+		base-package="naver.rlgns1129.smartorder" />
+
 	<!--파일 업로드 처리를 위한 bean -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 파일크기는 약 10MB로 설정 -->
 		<beans:property name="maxUploadSize" value="10000000" />
 	</beans:bean>
-	
+
 	<!-- MyBatis 트랜잭션 관련 bean -->
 	<beans:bean id="transactionManager"
-	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
-	
-	<tx:annotation-driven 
-		transaction-manager="transactionManager"/>
-		
+
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+	<beans:bean id="AdminInterceptor"
+		class="naver.rlgns1129.smartorder.interceptor.AdminInterceptor" />
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/**" />
+			<beans:ref bean="AdminInterceptor" />
+		</interceptor>
+	</interceptors>
+
+
 </beans:beans>

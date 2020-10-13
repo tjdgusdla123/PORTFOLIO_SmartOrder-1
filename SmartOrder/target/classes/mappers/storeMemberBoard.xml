@@ -8,7 +8,7 @@
 
 	<!-- 게시글 전체 목록 조회 -->
 	<select id="list" resultType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
-		select boardNo, boardTitle, boardRegdate, boardreadCnt, memberNickname 
+		select boardNo, boardTitle, date_format(boardregdate, '%y.%c.%d %H:%i') as boardRegdate , boardreadCnt, memberNickname 
 		from storeMemberBoardTBL
 		order by boardUpdateDate desc
 	</select>
@@ -27,7 +27,7 @@
 		where boardNo = #{boardNo}
 	</select>
 	
-	<!-- 게시글 수정 전 상세보기 모달창으로 불러오기. -->
+	<!-- 게시글 수정할때 수정전에 상세보기를 모달창으로 불러오기. -->
 	<select id="detailUpdate" parameterType="naver.rlgns1129.smartorder.domain.StoreMemberBoard" resultType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
 		select boardNo, boardTitle, boardContent , boardRegdate ,boardFile, memberNickname
 		from storeMemberBoardTBL 

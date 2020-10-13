@@ -22,7 +22,7 @@ public class StoreMemberBoard {
 	private Integer boardNo;  //글번호
 	private String  boardTitle; //글제목 
 	private String  boardContent;//글내용
-	private Date    boardRegdate; //작성일 
+	private String  boardRegdate; //작성일 
 	private Date    boardUpdatedate;//수정일 
 	private Integer boardReadcnt;//조회수 
 	private String  boardIp;//작성한 곳의 아이피 

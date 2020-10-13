@@ -1,20 +1,16 @@
 package naver.rlgns1129.smartorder.service;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +18,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import naver.rlgns1129.smartorder.dao.StoreMemberBoardDAO;
 import naver.rlgns1129.smartorder.dao.StoreMemberDAO;
-import naver.rlgns1129.smartorder.domain.StoreMember;
 import naver.rlgns1129.smartorder.domain.StoreMemberBoard;
 
 @Service
@@ -126,24 +121,20 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 		
 		List<StoreMemberBoard> list = storeMemberBoardDao.storeMemberBoardList();
 		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardList.list : " + list);
-		
+				
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("yy.MM.dd HH:mm");
 		Calendar cal = Calendar.getInstance();
-		Date today = new Date(cal.getTimeInMillis());
-		
-		System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardList.today : " + today);
-
+		String today = simpleDateFormat.format(cal.getTime());
+		System.out.println("toreMemberBoardServiceImpl.storeMemberBoardList.today : " + today.toString().substring(0, 8));
 
 		for (StoreMemberBoard storeMemberBoard : list) {
 			
 			System.out.println("StoreMemberBoardServiceImpl.storeMemberBoardList.storeMemberBoard.getBoardRegdate().toString() : " + storeMemberBoard.getBoardRegdate().toString());
 
-			if (today.toString().substring(0, 10).equals(storeMemberBoard.getBoardRegdate().toString().substring(0, 10))) {
-				storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(11,16));
-				System.out.println("substring(11) : " + storeMemberBoard.getBoardRegdate().toString().substring(11,16));
+			if (today.toString().substring(0, 8).equals(storeMemberBoard.getBoardRegdate().toString().substring(0, 8))) {
+				storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(9,14));
 			} else {
-				storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(0, 10));
-				System.out.println("substring(10) : " + storeMemberBoard.getBoardRegdate().toString().substring(0, 10));
-
+				storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(0, 8));
 			}
 		}
 		
