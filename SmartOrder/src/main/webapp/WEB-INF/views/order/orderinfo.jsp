@@ -150,12 +150,18 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<div class="modal-body" id="menudiv"></div>
+								<div class="modal-body">
+									<div id="menudiv"></div>
+									<div class="cartStock" style="text-align:right">
+										<span>구입 수량</span>
+										<input type="number" class="numberBox" id="menuCount" name="menuCount" min="1" max="10" value="1" pattern="\d*"  />
+										</div>
+								</div>
 								<div class="modal-footer">
 									
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">뒤로가기
 										</button>
-									<button type="button" class="btn btn-primary"
+									<button type="button" id="addToCart" class="btn btn-primary"
 										>메뉴 추가</button>	
 								</div>
 							</div>
@@ -187,5 +193,4 @@
 	src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
 <script src="${pageContext.request.contextPath}/storemenu/js/getmenu.js"></script>
 <script src="${pageContext.request.contextPath}/common/js/common.js"></script>
-
 </html>

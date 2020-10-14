@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD: XML로 작성한 내용을 해석하는 위치를 설정 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="storeOrder">
+	<!-- 주문 삽입하는 SQL -->
+	<insert id="insertOrder" parameterType="naver.rlgns1129.smartorder.domain.StoreOrder">
+		insert into orderCartTbl(menuCode, menuCount, storeTableName, storeNickname, memberNickname) 
+		values(#{menuCode},#{menuCount},#{storeTableName}, #{storeNickname}, #{memberNickname})
+	</insert>
+</mapper>
+

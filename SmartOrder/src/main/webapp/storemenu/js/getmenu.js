@@ -104,10 +104,34 @@ function getmenucode(menucode) {
 		var updateModal = document.getElementById('updateModal')
 		var deleteModal = document.getElementById('deleteModal')
 		
+		
+		var menuCount = document.getElementById('menuCount');
+		var addToCart = document.getElementById('addToCart');
+				
+		addToCart.addEventListener("click", function (event) {
+		console.log('addToCart 클릭 성공')
+		
+			$.ajax({ 
+						url :'/orderinfo/order',
+						 type : 'post', 
+						 
+						 data : { 'menuCode' : sharedMenuCode, 'menuCount' : menuCount.value }, 
+						 success: function(e){ 
+							
+							if (e.result == true) {
+								console.log('카트 담기 성공')
+							} else {
+								alert('카트 담기 실패하였습니다. QR코드로 접속 후 로그인해주세요.')
+								location.href = "/user/signout";
+							}
+							 } 
+						});
+		
+		})
+		menuCount.value = null;
+
 		if(sessionStorage.getItem('verifySession') == '9'){
 			console.log('세션 일치')
-			
-			var storeNickname = sessionStorage.getItem('storenickname')			
 			
 			var menuUpdateModalDiv = '<div id=menuModalUpdateDiv><button type="button" id="menuUpdateBtn" data-dismiss="modal" data-toggle="modal" href="#menuUpdateModal" onclick="menuUpdateBtn(menucode)" class="btn btn-primary">메뉴수정</button></div>'
 			var menuDeleteModalDiv = '<div id=menuModalDeleteDiv><a data-dismiss="modal" data-toggle="modal" href="#menuDeleteModal" class="btn btn-primary">메뉴삭제</a></div>'
@@ -115,11 +139,6 @@ function getmenucode(menucode) {
 			updateModal.innerHTML = menuUpdateModalDiv
 			deleteModal.innerHTML = menuDeleteModalDiv
 
-		}else{
-			console.log('세션 불일치')
-			
-			updateModal.innerHTML = ""
-			deleteModal.innerHTML = ""
 		}
 		
 	}
