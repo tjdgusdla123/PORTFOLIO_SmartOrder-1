@@ -11,7 +11,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<title>Insert title here</title>
+	<title>게시판</title>
+
+<!-- jquery -->
+<script
+	src="${pageContext.request.contextPath}/bootstrapfile/vendor/jquery/jquery.js"></script>
+	
 	<!-- Bootstrap core CSS -->
 	<link href="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/css/bootstrap.min.css"
 		rel="stylesheet">

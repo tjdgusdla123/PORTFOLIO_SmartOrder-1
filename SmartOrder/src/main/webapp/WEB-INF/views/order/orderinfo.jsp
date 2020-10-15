@@ -95,13 +95,11 @@
 					
 					<c:if test="${storememberinfo.storememberverify == '0'}">
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/board/list">게시판</a></li>
-						
+							href="/orderinfo/cartlist">카트</a></li>
 						<!-- <li class="nav-item"><a class="nav-link"
-							href="#">카트</a></li>
+							href="/#">주문내역</a></li> -->	
 						<li class="nav-item"><a class="nav-link"
-							href="/#">주문내역</a></li> -->
-
+							href="${pageContext.request.contextPath}/board/list">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/update">회원정보수정</a>
 						</li>
 						<li class="nav-item"><a class="nav-link"
@@ -167,10 +165,6 @@
 							</div>
 						</div>
 					</div>
-					
-						
-					 
-
 				</div>
 			</div>
 		</div>

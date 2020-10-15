@@ -8,6 +8,7 @@ var menudiv = document.getElementById("menudiv");
 var menubtn = document.getElementById("menubtn");
 var dialog = document.getElementById("dialog");
 
+
 window.addEventListener("load", function () {
 	var sharedMenuCode = "";
 })
@@ -104,6 +105,18 @@ function getmenucode(menucode) {
 		var updateModal = document.getElementById('updateModal')
 		var deleteModal = document.getElementById('deleteModal')
 		
+		if(sessionStorage.getItem('verifySession') == '9'){
+			console.log('세션 일치')
+			
+			var menuUpdateModalDiv = '<div id=menuModalUpdateDiv><button type="button" id="menuUpdateBtn" data-dismiss="modal" data-toggle="modal" href="#menuUpdateModal" onclick="menuUpdateBtn(menucode)" class="btn btn-primary">메뉴수정</button></div>'
+			var menuDeleteModalDiv = '<div id=menuModalDeleteDiv><a data-dismiss="modal" data-toggle="modal" href="#menuDeleteModal" class="btn btn-primary">메뉴삭제</a></div>'
+			
+			updateModal.innerHTML = menuUpdateModalDiv
+			deleteModal.innerHTML = menuDeleteModalDiv
+
+		}
+		
+		
 		
 		var menuCount = document.getElementById('menuCount');
 		var addToCart = document.getElementById('addToCart');
@@ -112,23 +125,25 @@ function getmenucode(menucode) {
 		console.log('addToCart 클릭 성공')
 		
 			$.ajax({ 
-						url :'/orderinfo/order',
-						 type : 'post', 
+					url :'/orderinfo/order',
+					type : 'post', 
 						 
-						 data : { 'menuCode' : sharedMenuCode, 'menuCount' : menuCount.value }, 
-						 success: function(e){ 
+					data : { 'menuCode' : sharedMenuCode, 'menuCount' : menuCount.value }, 
+					success: function(e){ 
 							
 							if (e.result == true) {
+								alert('카트 담기 성공')
 								console.log('카트 담기 성공')
+								location.href = "/orderinfo"
 							} else {
 								alert('카트 담기 실패하였습니다. QR코드로 접속 후 로그인해주세요.')
 								location.href = "/user/signout";
 							}
-							 } 
-						});
+						} 
+					});
 		
 		})
-		menuCount.value = null;
+		//menuCount.value = null;
 
 		if(sessionStorage.getItem('verifySession') == '9'){
 			console.log('세션 일치')
@@ -281,4 +296,3 @@ getalcohol.addEventListener("click", function (event) {
 getdrink.addEventListener("click", function (event) {
 	getmenu("drink", "menuSectionAlcohol", "기훈이네김밥천국닉네임");
 });
-

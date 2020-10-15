@@ -32,8 +32,8 @@
 					<c:if test="${member.verify == 9}">
 						<li><a href="/admin/index">관리자 화면</a></li>
 					</c:if>
-					<li class="nav-item"><a class="nav-link" href="/shop/cartList">카트</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+							href="/orderinfo/cartlist">카트</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/shop/orderList">주문내역</a></li>
 					

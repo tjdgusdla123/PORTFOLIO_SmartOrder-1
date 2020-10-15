@@ -9,7 +9,20 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>안녕하세요 배기훈입니다.</title>
+<title>주문 정보</title>
+
+<!-- 테이블 css -->
+<style>
+	.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
+		{
+		background-color: #ffc107;
+	}
+</style>
+
+<!-- jquery -->
+<script
+	src="${pageContext.request.contextPath}/bootstrapfile/vendor/jquery/jquery.js"></script>
+
 <!-- Bootstrap core CSS -->
 <link
 	href="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/css/bootstrap.min.css"
@@ -30,10 +43,12 @@
 <link
 	href="${pageContext.request.contextPath}/bootstrapfile/css/clean-blog.min.css"
 	rel="stylesheet">
+
 </head>
+
 <body>
 
-  <!-- header -->
+	<!-- header -->
 	<header class="masthead" style="background-image: url('${pageContext.request.contextPath}/bootstrapfile/img/bg-masthead.jpg')">
     <div class="overlay"></div>
     <div class="container">
@@ -42,7 +57,9 @@
           <div class="page-heading">
             <h1>Smart Order</h1>
             <span class="subheading">
-            	스마트 오더를 소개합니다.</span>
+            	<c:if test="${storememberinfo.result == true}">
+            	 ${storememberinfo.storemembernickname}님 반갑습니다.<br/><br/>
+            	</c:if> 카트에 넣은 메뉴를 확인하세요.</span>
           </div>
         </div>
       </div>
@@ -53,7 +70,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/">About</a>
+			<a class="navbar-brand" href="/">카트</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -64,7 +81,8 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/">홈</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/smartorder/about">스마트오더</a></li>
+						href="/smartorder/about">스마트오더</a></li>	
+						
 					<c:if test="${storememberinfo.result == null}">
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/board/list">게시판</a></li>
@@ -72,13 +90,14 @@
 							href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/user/register">회원가입</a></li>
-			
+
 					</c:if>
+					
 					<c:if test="${storememberinfo.storememberverify == '0'}">
 						<li class="nav-item"><a class="nav-link"
 							href="/orderinfo/cartlist">카트</a></li>
 						<!-- <li class="nav-item"><a class="nav-link"
-							href="/#">주문내역</a></li> -->
+							href="/#">주문내역</a></li> -->	
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/board/list">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/update">회원정보수정</a>
@@ -100,53 +119,31 @@
 		</div>
 	</nav>
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto"> 
-        <p>프로젝트명 : Smart Order</p>
-        <p>수행 : 배기훈 </p>
-        <p>프로젝트 소개 : </p>
-        <p>메뉴의 변화가 자주 있을 수 있는 식당에서 메뉴판을 가져다 주지 않아도  
-            고객이 메뉴를 간편하게 볼 수 있으며 주문할 수 있는 시스템을 만들고 싶었습니다.  
-            ajax를 이용하여 페이지 이동없이 원하는 메뉴 섹터의 메뉴를 가져올 수 있고, 그것에 대해 ajax를 이용하여  
-            모달창에 메뉴의 상세정보를 출력합니다.  
-            로그인을 하면 회원정보 수정 및 탈퇴, 로그아웃을 구현했습니다.  
-            Kakao API 를 이용하여 위치정보를 받아올 수 있게 구현했습니다.</p>
-        <p>-회원</p>    
-        <p>회원가입, 회원정보수정, 회원삭제, 닉네임 중복검사, 로그인 구현</p>
-        <p>-게시판</p>
-        <p>게시글작성, 게시글전체조회, 게시글상세조회, 게시글상세조회시 조회수 증가, 게시글수정(본인글 선택시), 게시글삭제(본인글 선택시)</p>
-        <p>-관리자</p>
-        <p>메뉴추가, 메뉴수정, 메뉴삭제, 관리자 회원정보수정 및 회원 탈퇴, 모든 게시판 글의 권한을 부여하여 삭제 구현.</p>
-        <p>-메뉴</p>
-        <p>메뉴조회</p>
-        <p>개발환경 :</p>
-        <p>Operating System: Windows 10, Mac OS X</p>
-        <p>Database: MySQL </p>
-        <p>Web Application Server: Apache Tomcat 9.0</p>
-        <p>IDE: STS 3</p>
-      	<p>Framework: Spring, MyBatis</p>
-      	<p>SCM: Git Hub</p>
-      	<p>Test: JUnit</p>
-      	<p>Build Tool: Maven</p>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- footer -->
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div id=getList>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- footer -->
 	<%@ include file="../include/footer.jsp"%>
 
 </body>
-	<!-- Bootstrap core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/bootstrapfile/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/bootstrapfile/vendor/jquery/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/bootstrapfile/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Custom scripts for this template -->
-	<script
-		src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
+<!-- Custom scripts for this template -->
+<script
+	src="${pageContext.request.contextPath}/bootstrapfile/js/clean-blog.min.js"></script>
+<script src="${pageContext.request.contextPath}/cartList/js/cartList.js"></script>
+<script src="${pageContext.request.contextPath}/common/js/common.js"></script>
 </html>

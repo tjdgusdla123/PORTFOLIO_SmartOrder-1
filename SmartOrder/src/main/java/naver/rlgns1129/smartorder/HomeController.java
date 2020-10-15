@@ -17,4 +17,9 @@ public class HomeController {
 		return "smartOrder/about";
 	}
 	
+	@RequestMapping(value = "smartorder/test", method = RequestMethod.GET)
+	public String test() {
+		return "order/menuCountAndResult";
+	}
+	
 }

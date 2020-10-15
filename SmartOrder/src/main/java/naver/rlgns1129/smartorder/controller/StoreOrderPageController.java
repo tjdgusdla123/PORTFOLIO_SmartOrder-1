@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class StoreOrderPageController {
+
 	//http://localhost:8080/orderinfo/table?tablename=1&storenickname=기훈이네김밥천국닉네임
 	@RequestMapping(value = {"orderinfo/table"} , method = RequestMethod.GET)
 	public String saveTableName(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("StoreOrderPageController.saveTableName 진입");
 		String storeTableName = request.getParameter("tablename");
 		String storeNickname = request.getParameter("storenickname");
 		
@@ -22,9 +22,6 @@ public class StoreOrderPageController {
 		request.getSession().setAttribute("storeNickname", storeNickname);
 		
 		Map<String, Object> storeMemberInfo = (Map<String, Object>) request.getSession().getAttribute("storememberinfo");
-		System.out.println("세션에 저장된 storeMemberInfo : " + storeMemberInfo);
-		
-		
 		
 		if(storeMemberInfo == null ) {
 			return "redirect:/user/login";
@@ -33,4 +30,12 @@ public class StoreOrderPageController {
 		}
 		
 	}
+	
+	@RequestMapping(value = {"orderinfo/cartlist"} , method = RequestMethod.GET)
+	public String cartList(HttpServletRequest request, HttpServletResponse response) {
+		
+			return "order/cartList";
+		
+	}
+	
 }

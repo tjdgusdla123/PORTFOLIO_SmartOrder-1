@@ -10,5 +10,17 @@
 		insert into orderCartTbl(menuCode, menuCount, storeTableName, storeNickname, memberNickname) 
 		values(#{menuCode},#{menuCount},#{storeTableName}, #{storeNickname}, #{memberNickname})
 	</insert>
+	
+	<!-- 카트에 추가한 메뉴확인 SQL -->
+	<select id="cartList" resultType="naver.rlgns1129.smartorder.domain.StoreCartList"  parameterType="java.lang.String">
+		select menuname, menucount, storemenutbl.menuprice, storemembertbl.membernickname, orderCartTbl.orderdate
+		
+		from orderCartTbl , storemenutbl , storemembertbl 
+		
+		where storemembertbl.membernickname = orderCartTbl.membernickname and 
+		orderCartTbl.menucode = storemenutbl.menucode and 
+		storemembertbl.membernickname = #{storeNickname};
+	</select>
+	
 </mapper>
 

@@ -22,13 +22,21 @@ public class StoreOrderRestController {
 	
 	@RequestMapping(value = {"orderinfo/order"} , method = RequestMethod.POST)
 	public Map<String, Object> insertOrder(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("StoreOrderPageController.saveTableName 진입");
+		System.out.println("StoreOrderRestController.saveTableName 진입");
 		
 		Map<String, Object> map = storeOrderService.insertOrder(request, response);
 		
 		return map;
 	}
 	
-	
+	@RequestMapping(value = {"orderinfo/getcartlist"} , method = RequestMethod.GET)
+	public Map<String, Object> getcartList(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("StoreOrderRestController.getcartList 진입");
+		
+		Map<String, Object> map = storeOrderService.cartList(request, response);
+		System.out.println("StoreOrderRestController.getcartList.map : " + map);
+
+		return map;
+	}
 	
 }
