@@ -14,7 +14,7 @@
             원하는 메뉴를 카트에 담을 수 있습니다.    
             Kakao API 를 이용하여 위치정보를 받아올 수 있게 구현했습니다.  
 
-            ![기훈이네김밥천국닉네임테이블1번](https://user-images.githubusercontent.com/63835963/96061362-fc5d7580-0ecd-11eb-9309-e8da519073f5.png)  
+![기훈이네김밥천국닉네임테이블1번](https://user-images.githubusercontent.com/63835963/96061362-fc5d7580-0ecd-11eb-9309-e8da519073f5.png)    
 
 
 -회원  
